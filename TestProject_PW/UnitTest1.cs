@@ -20,14 +20,14 @@ namespace TestProject_PW
         }
 
         [TestMethod]
-        public void Substract_WithValidInput_ReturnsSubstraction()
+        public void Subtract_WithValidInput_ReturnsSubtraction()
         {
             double number = 1.5;
             double number1 = 2;
             double expected = -0.5;
             Calculator calculator = new Calculator();
 
-            double actual = calculator.Substract(number, number1);
+            double actual = calculator.Subtract(number, number1);
 
             Assert.AreEqual(expected, actual);
         }

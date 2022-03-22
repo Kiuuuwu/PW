@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\kiu\\poli\\poli_sem4\\wspolbiezne\\wspolbiezne\\TestProject_PW\\TestProject_PW.csproj": {}
+    "C:\\Users\\mikol\\Desktop\\Zlew\\Studia_2022\\ProgW\\RepoPW\\TestProject_PW\\TestProject_PW.csproj": {}
   },
   "projects": {
-    "D:\\kiu\\poli\\poli_sem4\\wspolbiezne\\wspolbiezne\\TestProject_PW\\TestProject_PW.csproj": {
+    "C:\\Users\\mikol\\Desktop\\Zlew\\Studia_2022\\ProgW\\RepoPW\\TestProject_PW\\TestProject_PW.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\kiu\\poli\\poli_sem4\\wspolbiezne\\wspolbiezne\\TestProject_PW\\TestProject_PW.csproj",
+        "projectUniqueName": "C:\\Users\\mikol\\Desktop\\Zlew\\Studia_2022\\ProgW\\RepoPW\\TestProject_PW\\TestProject_PW.csproj",
         "projectName": "TestProject_PW",
-        "projectPath": "D:\\kiu\\poli\\poli_sem4\\wspolbiezne\\wspolbiezne\\TestProject_PW\\TestProject_PW.csproj",
-        "packagesPath": "C:\\Users\\Kiu\\.nuget\\packages\\",
-        "outputPath": "D:\\kiu\\poli\\poli_sem4\\wspolbiezne\\wspolbiezne\\TestProject_PW\\obj\\",
+        "projectPath": "C:\\Users\\mikol\\Desktop\\Zlew\\Studia_2022\\ProgW\\RepoPW\\TestProject_PW\\TestProject_PW.csproj",
+        "packagesPath": "C:\\Users\\mikol\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mikol\\Desktop\\Zlew\\Studia_2022\\ProgW\\RepoPW\\TestProject_PW\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Kiu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mikol\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +32,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\kiu\\poli\\poli_sem4\\wspolbiezne\\wspolbiezne\\wspolbiezne1\\wspolbiezne1.csproj": {
-                "projectPath": "D:\\kiu\\poli\\poli_sem4\\wspolbiezne\\wspolbiezne\\wspolbiezne1\\wspolbiezne1.csproj"
+              "C:\\Users\\mikol\\Desktop\\Zlew\\Studia_2022\\ProgW\\RepoPW\\wspolbiezne1\\wspolbiezne1.csproj": {
+                "projectPath": "C:\\Users\\mikol\\Desktop\\Zlew\\Studia_2022\\ProgW\\RepoPW\\wspolbiezne1\\wspolbiezne1.csproj"
               }
             }
           }
@@ -76,21 +80,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\kiu\\poli\\poli_sem4\\wspolbiezne\\wspolbiezne\\wspolbiezne1\\wspolbiezne1.csproj": {
+    "C:\\Users\\mikol\\Desktop\\Zlew\\Studia_2022\\ProgW\\RepoPW\\wspolbiezne1\\wspolbiezne1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\kiu\\poli\\poli_sem4\\wspolbiezne\\wspolbiezne\\wspolbiezne1\\wspolbiezne1.csproj",
+        "projectUniqueName": "C:\\Users\\mikol\\Desktop\\Zlew\\Studia_2022\\ProgW\\RepoPW\\wspolbiezne1\\wspolbiezne1.csproj",
         "projectName": "wspolbiezne1",
-        "projectPath": "D:\\kiu\\poli\\poli_sem4\\wspolbiezne\\wspolbiezne\\wspolbiezne1\\wspolbiezne1.csproj",
-        "packagesPath": "C:\\Users\\Kiu\\.nuget\\packages\\",
-        "outputPath": "D:\\kiu\\poli\\poli_sem4\\wspolbiezne\\wspolbiezne\\wspolbiezne1\\obj\\",
+        "projectPath": "C:\\Users\\mikol\\Desktop\\Zlew\\Studia_2022\\ProgW\\RepoPW\\wspolbiezne1\\wspolbiezne1.csproj",
+        "packagesPath": "C:\\Users\\mikol\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mikol\\Desktop\\Zlew\\Studia_2022\\ProgW\\RepoPW\\wspolbiezne1\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Kiu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mikol\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -130,7 +138,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

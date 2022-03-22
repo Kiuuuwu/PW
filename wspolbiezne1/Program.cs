@@ -14,7 +14,7 @@ namespace CalculatorNS
             return number + number1;
         }
 
-        public double Substract(double number, double number1)
+        public double Subtract(double number, double number1)
         {
             return number - number1;
         }
@@ -31,12 +31,15 @@ namespace CalculatorNS
 
         public static void Main()
         {
-            double number = 2;
-            double number1 = 7;
+            Console.WriteLine("Please specify two numbers you would like to:\nadd, subtract, multiply or divide:" +
+                "\nPlease type in the first number");
+            double number = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Please type in the second number");
+            double number1 = Convert.ToInt32(Console.ReadLine());
             Calculator calculator = new Calculator();
 
             Console.WriteLine("add(" + number + ", " + number1 + "): " + calculator.Add(number, number1));
-            Console.WriteLine("substract(" + number + ", " + number1 + "): " + calculator.Substract(number, number1));
+            Console.WriteLine("subtract(" + number + ", " + number1 + "): " + calculator.Subtract(number, number1));
             Console.WriteLine("multiply(" + number + ", " + number1 + "): " + calculator.Multiply(number, number1));
             Console.WriteLine("divide(" + number + ", " + number1 + "): " + calculator.Divide(number, number1));
         }
