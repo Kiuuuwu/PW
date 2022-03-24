@@ -33,15 +33,30 @@ namespace CalculatorNS
         {
             Console.WriteLine("Please specify two numbers you would like to:\nadd, subtract, multiply or divide:" +
                 "\nPlease type in the first number");
-            double number = Convert.ToInt32(Console.ReadLine());
+
+            double number = Convert.ToDouble(Console.ReadLine());   // note: in c# we use ',', not '.' to create double
             Console.WriteLine("Please type in the second number");
-            double number1 = Convert.ToInt32(Console.ReadLine());
+            double number1 = Convert.ToDouble(Console.ReadLine());
+
+            Console.WriteLine("Please specify operation:\n[1] add\n[2] subtract\n[3] multiply\n[4] divide:");
+            string operationNumber = Console.ReadLine();
             Calculator calculator = new Calculator();
 
-            Console.WriteLine("add(" + number + ", " + number1 + "): " + calculator.Add(number, number1));
-            Console.WriteLine("subtract(" + number + ", " + number1 + "): " + calculator.Subtract(number, number1));
-            Console.WriteLine("multiply(" + number + ", " + number1 + "): " + calculator.Multiply(number, number1));
-            Console.WriteLine("divide(" + number + ", " + number1 + "): " + calculator.Divide(number, number1));
+            switch (operationNumber)
+            {
+                case "1":
+                    Console.WriteLine("add(" + number + ", " + number1 + "): " + calculator.Add(number, number1));
+                    break;
+                case "2":
+                    Console.WriteLine("subtract(" + number + ", " + number1 + "): " + calculator.Subtract(number, number1));
+                    break;
+                case "3":
+                    Console.WriteLine("multiply(" + number + ", " + number1 + "): " + calculator.Multiply(number, number1));
+                    break;
+                case "4":
+                    Console.WriteLine("divide(" + number + ", " + number1 + "): " + calculator.Divide(number, number1));
+                    break;
+            }  
         }
     }
 }

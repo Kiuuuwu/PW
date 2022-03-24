@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mikol\\Desktop\\Zlew\\Studia_2022\\ProgW\\RepoPW\\wspolbiezne1\\wspolbiezne1.csproj": {}
+    "D:\\kiu\\poli\\poli_sem4\\wspolbiezne\\wspolbiezne\\wspolbiezne1\\wspolbiezne1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mikol\\Desktop\\Zlew\\Studia_2022\\ProgW\\RepoPW\\wspolbiezne1\\wspolbiezne1.csproj": {
+    "D:\\kiu\\poli\\poli_sem4\\wspolbiezne\\wspolbiezne\\wspolbiezne1\\wspolbiezne1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mikol\\Desktop\\Zlew\\Studia_2022\\ProgW\\RepoPW\\wspolbiezne1\\wspolbiezne1.csproj",
+        "projectUniqueName": "D:\\kiu\\poli\\poli_sem4\\wspolbiezne\\wspolbiezne\\wspolbiezne1\\wspolbiezne1.csproj",
         "projectName": "wspolbiezne1",
-        "projectPath": "C:\\Users\\mikol\\Desktop\\Zlew\\Studia_2022\\ProgW\\RepoPW\\wspolbiezne1\\wspolbiezne1.csproj",
-        "packagesPath": "C:\\Users\\mikol\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mikol\\Desktop\\Zlew\\Studia_2022\\ProgW\\RepoPW\\wspolbiezne1\\obj\\",
+        "projectPath": "D:\\kiu\\poli\\poli_sem4\\wspolbiezne\\wspolbiezne\\wspolbiezne1\\wspolbiezne1.csproj",
+        "packagesPath": "C:\\Users\\Kiu\\.nuget\\packages\\",
+        "outputPath": "D:\\kiu\\poli\\poli_sem4\\wspolbiezne\\wspolbiezne\\wspolbiezne1\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\mikol\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Kiu\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -58,7 +54,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     }
