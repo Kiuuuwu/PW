@@ -4,5 +4,5 @@
 
 | Name Surname (initials) | GUID                                     |
 | ----------------------- | ---------------------------------------- |
-| Katarzyna Frykowska     | `{38c9496f-e201-4ef1-8ad9-c76be1eea18b}` |
-| Mikołaj Kozłowski       | `{eeee928e-eb90-45fe-a71b-3f837c1c4777}` |
+| KF 36528                | `{38c9496f-e201-4ef1-8ad9-c76be1eea18b}` |
+| MK 36569                | `{eeee928e-eb90-45fe-a71b-3f837c1c4777}` |
