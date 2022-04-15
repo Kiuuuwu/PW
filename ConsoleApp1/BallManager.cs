@@ -17,16 +17,20 @@ namespace Logic
             return ball;
         }
 
-        public Ball MoveBall(Ball ball)
+        public Ball MoveBall(Ball ball, double nrOfSteps)
         {
-            //bierzemy wspolrzedne poczatkowe pilki, wspolrzedne destination i przesuwamy
-            throw new NotImplementedException();
-            //return ball;
+
+            double distanceX = ball.DestinationPlaneX - ball.XCoordinate;
+            double distanceY = ball.DestinationPlaneY - ball.YCoordinate;
+            ball.XCoordinate += distanceX/nrOfSteps;
+            ball.YCoordinate += distanceY/nrOfSteps;
+
+            return ball;
         }
 
         public Ball BounceBall(Ball ball)
         {
-            return MoveBall(ball);
+            return ball;
         }
     }
 }

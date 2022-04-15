@@ -25,7 +25,7 @@ namespace TestProject_PW
             Ball ball = ballManager.CreateBall();
             Plane plane = new Plane(400, 250);
 
-            Ball ball1 = ballManager.MoveBall(ball);
+            Ball ball1 = ballManager.MoveBall(ball, 5);
 
             Assert.AreNotEqual(ball.XCoordinate, ball1.XCoordinate);
             Assert.AreNotEqual(ball.YCoordinate, ball1.YCoordinate);

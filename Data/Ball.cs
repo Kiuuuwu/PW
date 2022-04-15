@@ -9,8 +9,8 @@ namespace Data
     public class Ball
     {
 
-        public double XCoordinate { get; private set; }
-        public double YCoordinate { get; private set; }
+        public double XCoordinate { get; set; }
+        public double YCoordinate { get; set; }
         public double Speed { get; private set; }
         public double Radius { get; private set; }
         public double DestinationPlaneX { get; private set; }
