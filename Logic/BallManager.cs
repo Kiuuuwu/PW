@@ -19,7 +19,6 @@ namespace Logic
 
         public Ball MoveBall(Ball ball, double nrOfSteps)
         {
-
             double distanceX = ball.DestinationPlaneX - ball.XCoordinate;
             double distanceY = ball.DestinationPlaneY - ball.YCoordinate;
             ball.XCoordinate += distanceX/nrOfSteps;

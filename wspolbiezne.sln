@@ -5,11 +5,11 @@ VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProject_PW", "TestProject_PW\TestProject_PW.csproj", "{F19B57C2-A87F-4ABA-A3D2-C2936A06970C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "WpfApp2\Presentation.csproj", "{2C907C2D-1B63-45FE-98ED-E52258AA285D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "Presentation\Presentation.csproj", "{2C907C2D-1B63-45FE-98ED-E52258AA285D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{8F8393E8-DD1B-4118-A1F3-EA8D5BBDA46B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "ConsoleApp1\Logic.csproj", "{54149A2B-6414-457A-B1D9-1D04F6621941}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj", "{54149A2B-6414-457A-B1D9-1D04F6621941}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
