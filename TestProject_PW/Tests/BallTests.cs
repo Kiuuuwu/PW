@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using wspolbiezne1.Data;
-using wspolbiezne1.Logic;
+using Data;
+using Logic;
 
 namespace TestProject_PW
 {

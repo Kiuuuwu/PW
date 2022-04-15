@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using wspolbiezne1.Data;
+using Data;
 
-namespace wspolbiezne1.Logic
+namespace Logic
 {
     public class BallManager
     {
@@ -22,6 +22,11 @@ namespace wspolbiezne1.Logic
             //bierzemy wspolrzedne poczatkowe pilki, wspolrzedne destination i przesuwamy
             throw new NotImplementedException();
             //return ball;
+        }
+
+        public Ball BounceBall(Ball ball)
+        {
+            return MoveBall(ball);
         }
     }
 }

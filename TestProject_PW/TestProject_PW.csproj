@@ -15,7 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\wspolbiezne1\wspolbiezne1.csproj" />
+    <ProjectReference Include="..\ConsoleApp1\Logic.csproj" />
+    <ProjectReference Include="..\Data\Data.csproj" />
+    <ProjectReference Include="..\WpfApp2\Presentation.csproj" />
   </ItemGroup>
 
 </Project>
