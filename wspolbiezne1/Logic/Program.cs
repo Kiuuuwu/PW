@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace wspolbiezne1.Logic
 {
-    internal class Class1
+    public class Program
     {
+        static void Main(string[] args)
+        {
+
+        }
     }
 }

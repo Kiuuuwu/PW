@@ -6,7 +6,25 @@ using System.Threading.Tasks;
 
 namespace wspolbiezne1.Data
 {
-    internal class Class1
+    public class Ball
     {
+        Random random = new Random();
+
+        public double XCoordinate { get; private set; }
+        public double YCoordinate { get; private set; }
+        public double Speed { get; private set; }
+        public double Radius { get; private set; }
+        public double DestinationPlaneX { get; private set; }
+        public double DestinationPlaneY { get; private set; }
+
+        public Ball(double XCoordinate, double YCoordinate, double Speed, double Radius, double DestinationPlaneX, double DestinationPlaneY)
+        {
+            this.Radius = Radius;
+            this.XCoordinate = XCoordinate;
+            this.YCoordinate = YCoordinate;
+            this.Speed = Speed;
+            this.DestinationPlaneX = DestinationPlaneX;
+            this.DestinationPlaneY = DestinationPlaneY;
+        }
     }
 }
