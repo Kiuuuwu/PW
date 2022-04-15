@@ -19,17 +19,19 @@ namespace TestProject_PW
         }
 
         [TestMethod]
-        [ExpectedException(typeof(System.NotImplementedException))]
-        public void MoveBall_ValidAmmount_IsInsideThePlane()
+        public void MoveBall_ValidAmmount_IsMovedInsideThePlane()
         {
             BallManager ballManager = new BallManager();
             Ball ball = ballManager.CreateBall();
             Plane plane = new Plane(400, 250);
 
-            ball = ballManager.MoveBall(ball);
+            Ball ball1 = ballManager.MoveBall(ball);
 
-            //Assert.IsTrue(ball.XCoordinate <= (plane.Width) / 2 - ball.Radius);
-            //Assert.IsTrue(ball.YCoordinate <= (plane.Height) / 2 - ball.Radius);
+            Assert.AreNotEqual(ball.XCoordinate, ball1.XCoordinate);
+            Assert.AreNotEqual(ball.YCoordinate, ball1.YCoordinate);
+
+            Assert.IsTrue(ball.XCoordinate <= (plane.Width) / 2 - ball.Radius);
+            Assert.IsTrue(ball.YCoordinate <= (plane.Height) / 2 - ball.Radius);
         }
     }
 }

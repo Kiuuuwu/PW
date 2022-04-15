@@ -19,6 +19,7 @@ namespace wspolbiezne1.Logic
 
         public Ball MoveBall(Ball ball)
         {
+            //bierzemy wspolrzedne poczatkowe pilki, wspolrzedne destination i przesuwamy
             throw new NotImplementedException();
             //return ball;
         }
