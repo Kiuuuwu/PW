@@ -8,7 +8,6 @@ namespace wspolbiezne1.Data
 {
     public class Ball
     {
-        Random random = new Random();
 
         public double XCoordinate { get; private set; }
         public double YCoordinate { get; private set; }

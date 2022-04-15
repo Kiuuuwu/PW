@@ -9,5 +9,12 @@ namespace wspolbiezne1.Logic
 {
     public class BallManager
     {
+        public Ball CreateBall()
+        {
+            Random random = new Random();
+
+            Ball ball = new Ball(random.Next(-100, 100), random.Next(-50, 50), random.NextDouble(), random.NextDouble()*10, random.Next(-100, 100), 100);
+            return ball;
+        }
     }
 }

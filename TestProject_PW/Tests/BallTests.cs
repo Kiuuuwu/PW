@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using wspolbiezne1.Data;
+using wspolbiezne1.Logic;
 
 namespace TestProject_PW
 {
@@ -9,7 +10,8 @@ namespace TestProject_PW
         [TestMethod]
         public void CreateBall_RandomWithinPlane_IsInsideThePlane()
         {
-            Ball ball = new Ball(0, 0, 2, 3, 200, 50);
+            BallManager ballManager = new BallManager();
+            Ball ball = ballManager.CreateBall();
             Plane plane = new Plane(400, 250);
 
             Assert.IsTrue(ball.XCoordinate < (plane.Width) / 2 - ball.Radius);
