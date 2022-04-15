@@ -14,8 +14,22 @@ namespace TestProject_PW
             Ball ball = ballManager.CreateBall();
             Plane plane = new Plane(400, 250);
 
-            Assert.IsTrue(ball.XCoordinate < (plane.Width) / 2 - ball.Radius);
-            Assert.IsTrue(ball.YCoordinate < (plane.Height) / 2 - ball.Radius);
+            Assert.IsTrue(ball.XCoordinate <= (plane.Width) / 2 - ball.Radius);
+            Assert.IsTrue(ball.YCoordinate <= (plane.Height) / 2 - ball.Radius);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(System.NotImplementedException))]
+        public void MoveBall_ValidAmmount_IsInsideThePlane()
+        {
+            BallManager ballManager = new BallManager();
+            Ball ball = ballManager.CreateBall();
+            Plane plane = new Plane(400, 250);
+
+            ball = ballManager.MoveBall(ball);
+
+            //Assert.IsTrue(ball.XCoordinate <= (plane.Width) / 2 - ball.Radius);
+            //Assert.IsTrue(ball.YCoordinate <= (plane.Height) / 2 - ball.Radius);
         }
     }
 }
