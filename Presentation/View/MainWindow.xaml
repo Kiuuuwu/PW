@@ -5,8 +5,47 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Running Orbs" Height="450" Width="800">
+    <Canvas>
+
+        <TextBox HorizontalAlignment="Left"
+                 FontSize="30"
+                 Margin="15"
+                 AcceptsReturn="True"
+                 TextWrapping="Wrap" Width="190"
+        />
+
+        <Button Canvas.Top="100" Canvas.Left="30"
+            HorizontalAlignment="left"
+            VerticalAlignment="Top"
+            x:Name="applyButton"
+            Content="Apply" Height="38" Width="100"
+            
+            />
+
+        <Viewbox Canvas.Bottom="100" Canvas.Left="155" Height="300" RenderTransformOrigin="0.5,0.5" Canvas.Top="100" Width="600" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Viewbox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Viewbox.RenderTransform>
+        </Viewbox>
+
+
+
+
+        <Button Canvas.Bottom="50" Canvas.Left="30"
+                
+               
+            x:Name="exitButton"
+            Content="Exit" Height="36" Width="100" VerticalAlignment="Bottom"
+            
+            
+            />
+
+
+    </Canvas>
 </Window>

@@ -22,7 +22,24 @@ namespace Presentation
     {
         public MainWindow()
         {
-            InitializeComponent();
+            //InitializeComponent();
+            //Button applyButton = new Button();
+            //applyButton.FontSize = 50;
+            //applyButton.Content = "Apply";
+            //this.Content = applyButton;
+
+            //TextBlock textBlock = new TextBlock();
+            //textBlock.Text = "Tekst blok";
+            //textBlock.Inlines.Add(new Run("Text dodany code behind")
+           // {
+               // Foreground = Brushes.Red,
+                    //TextDecorations = TextDecorations.Underline
+            //});
+            //textBlock.TextWrapping = TextWrapping.Wrap;
+            //textBlock.Foreground = Brushes.Black;
+            //this.Content = textBlock;
+
+
         }
     }
 }
