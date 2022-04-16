@@ -29,6 +29,14 @@ namespace Logic
 
         public Ball BounceBall(Ball ball)
         {
+            if (ball.DestinationPlaneY == 125 || ball.DestinationPlaneY == -125)
+            {
+                ball.XCoordinate = ball.DestinationPlaneX + ball.DestinationPlaneX - ball.XCoordinate;
+            }
+            else if (ball.DestinationPlaneX == 200 || ball.DestinationPlaneY == -200)
+            {
+                ball.YCoordinate = ball.DestinationPlaneY + ball.DestinationPlaneY - ball.YCoordinate;
+            }
             return ball;
         }
     }
