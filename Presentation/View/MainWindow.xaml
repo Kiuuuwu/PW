@@ -5,46 +5,46 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation"
         mc:Ignorable="d"
-        Title="Running Orbs" Height="450" Width="800">
+        Title="Running Circles" Height="600" Width="800">
     <Canvas>
 
-        <TextBox HorizontalAlignment="Left"
+        <TextBox Canvas.Top="50" HorizontalAlignment="Left"
                  FontSize="30"
                  Margin="15"
                  AcceptsReturn="True"
-                 TextWrapping="Wrap" Width="135"
+                 TextWrapping="Wrap" Width="100"
         />
 
-        <Button Canvas.Top="100" Canvas.Left="30"
+        <Button Canvas.Top="150" Canvas.Left="15"
             HorizontalAlignment="left"
             VerticalAlignment="Top"
             x:Name="applyButton"
             Content="Apply" Height="38" Width="100"
             
             />
-        <Border Background="#D6E0EB" Canvas.Bottom="100" Canvas.Left="155" Height="300" RenderTransformOrigin="0.5,0.5" Canvas.Top="100" Width="600" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <Viewbox Canvas.Bottom="100" Canvas.Left="155" Height="300" RenderTransformOrigin="0.5,0.5" Canvas.Top="100" Width="600" HorizontalAlignment="Left" VerticalAlignment="Center">
+        <Border Background="#D6E0EB" Canvas.Left="130" Height="360" RenderTransformOrigin="0.5,0.5" Canvas.Top="120" Width="640" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Viewbox Canvas.Left="130" Height="360" RenderTransformOrigin="0.500,0.480" Canvas.Top="120" Width="640" HorizontalAlignment="Left" VerticalAlignment="Center">
                 <Viewbox.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleY="-1"/>
                         <SkewTransform/>
                         <RotateTransform/>
-                        <TranslateTransform/>
+                        <TranslateTransform Y="12.48"/>
                     </TransformGroup>
                 </Viewbox.RenderTransform>
 
-                <Canvas Height="300" Width="600">
-                    <Ellipse Fill="#70365E" Width="25" Height="25" Canvas.Bottom="0" Canvas.Left="0"></Ellipse>
-                    <Ellipse Fill="#F0843C" Width="40" Height="40" Canvas.Bottom="260" Canvas.Left="560"></Ellipse>
+                <Canvas Height="360" Width="640">
+                    <Ellipse Fill="#70365E" Width="25" Height="25" Canvas.Bottom="270" Canvas.Left="50"></Ellipse>
+                    <Ellipse Fill="#F0843C" Width="40" Height="40" Canvas.Bottom="10" Canvas.Left="400"></Ellipse>
                 </Canvas>
-            
+
             </Viewbox>
         </Border>
 
 
 
 
-        <Button Canvas.Bottom="50" Canvas.Left="30"
+        <Button Canvas.Bottom="50" Canvas.Left="15"
                 
                
             x:Name="exitButton"
