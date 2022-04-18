@@ -12,7 +12,7 @@
                  FontSize="30"
                  Margin="15"
                  AcceptsReturn="True"
-                 TextWrapping="Wrap" Width="190"
+                 TextWrapping="Wrap" Width="135"
         />
 
         <Button Canvas.Top="100" Canvas.Left="30"
@@ -22,17 +22,24 @@
             Content="Apply" Height="38" Width="100"
             
             />
+        <Border Background="#D6E0EB" Canvas.Bottom="100" Canvas.Left="155" Height="300" RenderTransformOrigin="0.5,0.5" Canvas.Top="100" Width="600" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Viewbox Canvas.Bottom="100" Canvas.Left="155" Height="300" RenderTransformOrigin="0.5,0.5" Canvas.Top="100" Width="600" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <Viewbox.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleY="-1"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Viewbox.RenderTransform>
 
-        <Viewbox Canvas.Bottom="100" Canvas.Left="155" Height="300" RenderTransformOrigin="0.5,0.5" Canvas.Top="100" Width="600" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <Viewbox.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform ScaleY="-1"/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Viewbox.RenderTransform>
-        </Viewbox>
+                <Canvas Height="300" Width="600">
+                    <Ellipse Fill="#70365E" Width="25" Height="25" Canvas.Bottom="0" Canvas.Left="0"></Ellipse>
+                    <Ellipse Fill="#F0843C" Width="40" Height="40" Canvas.Bottom="260" Canvas.Left="560"></Ellipse>
+                </Canvas>
+            
+            </Viewbox>
+        </Border>
 
 
 
