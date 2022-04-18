@@ -4,26 +4,49 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation"
-        mc:Ignorable="d"
+        mc:Ignorable="d" FontSize="25" FontFamily="Courier New"
         Title="Running Circles" Height="600" Width="800">
-    <Canvas>
 
-        <TextBox Canvas.Top="50" HorizontalAlignment="Left"
-                 FontSize="30"
-                 Margin="15"
-                 AcceptsReturn="True"
-                 TextWrapping="Wrap" Width="100"
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+
+        <TextBox Grid.Column="1" Grid.Row="1"
+            x:Name="userInputTextBox"
+            Margin="10"
+            AcceptsReturn="True"
+            TextWrapping="Wrap" Width="100"
         />
 
-        <Button Canvas.Top="150" Canvas.Left="15"
+        <Button Grid.Column="1" Grid.Row="2"
+            x:Name="applyButton"
+            Margin="10"
             HorizontalAlignment="left"
             VerticalAlignment="Top"
-            x:Name="applyButton"
             Content="Apply" Height="38" Width="100"
-            
-            />
-        <Border Background="#D6E0EB" Canvas.Left="130" Height="360" RenderTransformOrigin="0.5,0.5" Canvas.Top="120" Width="640" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <Viewbox Canvas.Left="130" Height="360" RenderTransformOrigin="0.500,0.480" Canvas.Top="120" Width="640" HorizontalAlignment="Left" VerticalAlignment="Center">
+        />
+
+        <Button Grid.Column="1" Grid.Row="3" 
+            x:Name="exitButton"
+            Margin="10"
+            Content="Exit" Height="36" Width="100" VerticalAlignment="Bottom"
+            Grid.RowSpan="2"
+        />
+
+        <Border Background="#D6E0EB" Grid.Column="2" Grid.Row="3" Margin="10">
+            <Viewbox RenderTransformOrigin="0.500,0.480">
                 <Viewbox.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleY="-1"/>
@@ -41,18 +64,6 @@
             </Viewbox>
         </Border>
 
+    </Grid>
 
-
-
-        <Button Canvas.Bottom="50" Canvas.Left="15"
-                
-               
-            x:Name="exitButton"
-            Content="Exit" Height="36" Width="100" VerticalAlignment="Bottom"
-            
-            
-            />
-
-
-    </Canvas>
 </Window>
