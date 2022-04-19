@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Data;
 using Logic;
+using System.Collections.Generic;
 
 namespace TestProject_PW
 {
@@ -10,28 +11,30 @@ namespace TestProject_PW
         [TestMethod]
         public void CreateBall_RandomWithinPlane_IsInsideThePlane()
         {
+            List<Ball> BallList = new List<Ball>();
             BallManager ballManager = new BallManager();
-            Ball ball = ballManager.CreateBall();
+            BallList = ballManager.CreateBall(BallList);
             Plane plane = new Plane(400, 250);
 
-            Assert.IsTrue(ball.XCoordinate <= (plane.Width) / 2 - ball.Radius);
-            Assert.IsTrue(ball.YCoordinate <= (plane.Height) / 2 - ball.Radius);
+            Assert.IsTrue(BallList[0].XCoordinate <= (plane.Width) / 2 - BallList[0].Radius);
+            Assert.IsTrue(BallList[0].YCoordinate <= (plane.Height) / 2 - BallList[0].Radius);
         }
 
         [TestMethod]
         public void MoveBall_ValidAmmount_IsMovedInsideThePlane()
         {
+            List<Ball> BallList = new List<Ball>();
             BallManager ballManager = new BallManager();
-            Ball ball = ballManager.CreateBall();
+            BallList = ballManager.CreateBall(BallList);
             Plane plane = new Plane(400, 250);
 
-            Ball ball1 = ballManager.MoveBall(ball, 5);
+            BallList.Add(ballManager.MoveBall(BallList[0], 5));
 
-            Assert.AreNotEqual(ball.XCoordinate, ball1.XCoordinate);
-            Assert.AreNotEqual(ball.YCoordinate, ball1.YCoordinate);
+            Assert.AreNotEqual(BallList[0].XCoordinate, BallList[1].XCoordinate);
+            Assert.AreNotEqual(BallList[0].YCoordinate, BallList[1].YCoordinate);
 
-            Assert.IsTrue(ball.XCoordinate <= (plane.Width) / 2 - ball.Radius);
-            Assert.IsTrue(ball.YCoordinate <= (plane.Height) / 2 - ball.Radius);
+            Assert.IsTrue(BallList[1].XCoordinate <= (plane.Width) / 2 - BallList[1].Radius);
+            Assert.IsTrue(BallList[1].YCoordinate <= (plane.Height) / 2 - BallList[1].Radius);
         }
     }
 }

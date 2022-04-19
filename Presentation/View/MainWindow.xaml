@@ -3,10 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Presentation"
+        xmlns:local="clr-namespace:Presentation.ViewModel"
         mc:Ignorable="d" FontSize="25" FontFamily="Courier New"
         Title="Running Circles" Height="600" Width="800">
-
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
@@ -23,8 +25,18 @@
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
 
+        <!--<DataGrid Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="4" ItemsSource="{Binding Channels}" AutoGenerateColumns="False"
+          ColumnWidth="*">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Number"
+                            Width="200"
+                            Binding="{Binding NrOfBalls, Mode = TwoWay}"/>
+            </DataGrid.Columns>
+        </DataGrid>-->
+
         <TextBox Grid.Column="1" Grid.Row="1"
-            x:Name="userInputTextBox"
+            x:Name="nrOfBalls"
+            Text="{Binding NrOfBalls, Mode = TwoWay, UpdateSourceTrigger = PropertyChanged}"
             Margin="10"
             AcceptsReturn="True"
             TextWrapping="Wrap" Width="100"
@@ -56,9 +68,9 @@
                     </TransformGroup>
                 </Viewbox.RenderTransform>
 
-                <Canvas Height="360" Width="640">
-                    <Ellipse Fill="#70365E" Width="25" Height="25" Canvas.Bottom="270" Canvas.Left="50"></Ellipse>
-                    <Ellipse Fill="#F0843C" Width="40" Height="40" Canvas.Bottom="10" Canvas.Left="400"></Ellipse>
+                <Canvas x:Name="ballsPlane" Height="360" Width="640">
+                    <!--<Ellipse Fill="#70365E" Width="25" Height="25" Canvas.Bottom="270" Canvas.Left="50"></Ellipse>
+                    <Ellipse Fill="#F0843C" Width="40" Height="40" Canvas.Bottom="10" Canvas.Left="400"></Ellipse>-->
                 </Canvas>
 
             </Viewbox>
