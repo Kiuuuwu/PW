@@ -47,7 +47,7 @@
             Margin="10"
             HorizontalAlignment="left"
             VerticalAlignment="Top"
-            Content="Apply" Height="38" Width="100"
+            Content="Apply" Height="38" Width="100" Click="applyButton_Click"
         />
 
         <Button Grid.Column="1" Grid.Row="3" 

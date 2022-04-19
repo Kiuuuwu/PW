@@ -14,7 +14,7 @@ namespace TestProject_PW
         {
             ObservableCollection<Ball> BallList = new ObservableCollection<Ball>();
             BallManager ballManager = new BallManager();
-            BallList = ballManager.CreateBall(BallList);
+            ballManager.CreateBall();
             Plane plane = new Plane(400, 250);
 
             Assert.IsTrue(BallList[0].XCoordinate <= (plane.Width) / 2 - BallList[0].Radius);
@@ -26,7 +26,7 @@ namespace TestProject_PW
         {
             ObservableCollection<Ball> BallList = new ObservableCollection<Ball>();
             BallManager ballManager = new BallManager();
-            BallList = ballManager.CreateBall(BallList);
+            ballManager.CreateBall();
             Plane plane = new Plane(400, 250);
 
             BallList.Add(ballManager.MoveBall(BallList[0], 5));

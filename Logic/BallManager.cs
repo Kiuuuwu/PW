@@ -10,10 +10,10 @@ using Data;
 
 namespace Logic
 {
-    public class BallManager : INotifyPropertyChanged
+    public class BallManager
     {
 
-        private ObservableCollection<Ball> _currentBalls;
+        private ObservableCollection<Ball> _currentBalls = new ObservableCollection<Ball>();
         public ObservableCollection<Ball> CurrentBalls
         {
             get
@@ -21,14 +21,12 @@ namespace Logic
                 return _currentBalls;
             }
         }
-        public ObservableCollection<Ball> CreateBall(ObservableCollection<Ball> CurrentBalls)
+        public void CreateBall()
         {
             Random random = new Random();
 
             Ball ball = new Ball(random.Next(-100, 100), random.Next(-50, 50), random.NextDouble(), random.NextDouble()*10, random.Next(-100, 100), 100);
             CurrentBalls.Add(ball);
-
-            return CurrentBalls;
         }
 
         public Ball MoveBall(Ball ball, double nrOfSteps)
@@ -53,18 +51,6 @@ namespace Logic
             }
             return ball;
         }
-
-        private void OnPropertyChanged([CallerMemberName]  string property = "")
-        {
-            var handler = PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(property));
-            }
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
-        }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-
+        
     }
 }
