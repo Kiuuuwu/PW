@@ -2,6 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Data;
 using Logic;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace TestProject_PW
 {
@@ -11,7 +12,7 @@ namespace TestProject_PW
         [TestMethod]
         public void CreateBall_RandomWithinPlane_IsInsideThePlane()
         {
-            List<Ball> BallList = new List<Ball>();
+            ObservableCollection<Ball> BallList = new ObservableCollection<Ball>();
             BallManager ballManager = new BallManager();
             BallList = ballManager.CreateBall(BallList);
             Plane plane = new Plane(400, 250);
@@ -23,7 +24,7 @@ namespace TestProject_PW
         [TestMethod]
         public void MoveBall_ValidAmmount_IsMovedInsideThePlane()
         {
-            List<Ball> BallList = new List<Ball>();
+            ObservableCollection<Ball> BallList = new ObservableCollection<Ball>();
             BallManager ballManager = new BallManager();
             BallList = ballManager.CreateBall(BallList);
             Plane plane = new Plane(400, 250);

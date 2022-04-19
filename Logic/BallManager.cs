@@ -13,26 +13,22 @@ namespace Logic
     public class BallManager : INotifyPropertyChanged
     {
 
-        // tu ma byc observable colection na liscie kulek stworzonej w tej klasie
-
-        List<Ball> BallList = new List<Ball>();
-
-        private ObservableCollection<Ball> _currentBallListCollection;
-        public ObservableCollection<Ball> CurrentBallListCollection
+        private ObservableCollection<Ball> _currentBalls;
+        public ObservableCollection<Ball> CurrentBalls
         {
             get
             {
-                return _currentBallListCollection;
+                return _currentBalls;
             }
         }
-        public List<Ball> CreateBall(List<Ball> BallList)
+        public ObservableCollection<Ball> CreateBall(ObservableCollection<Ball> CurrentBalls)
         {
             Random random = new Random();
 
             Ball ball = new Ball(random.Next(-100, 100), random.Next(-50, 50), random.NextDouble(), random.NextDouble()*10, random.Next(-100, 100), 100);
-            BallList.Add(ball);
+            CurrentBalls.Add(ball);
 
-            return BallList;
+            return CurrentBalls;
         }
 
         public Ball MoveBall(Ball ball, double nrOfSteps)

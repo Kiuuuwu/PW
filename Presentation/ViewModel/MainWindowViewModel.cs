@@ -10,18 +10,8 @@ namespace Presentation.ViewModel
     public class MainWindowViewModel : INotifyPropertyChanged
     {
 
-        // tutaj ma byb binding i INotifyPropertyChanged
-        //public string _numberOfBalls = "2";
-        //public string NrOfBalls
-        //{
-        //    get { return _numberOfBalls; }
-        //    set { _numberOfBalls = value; }
-        //}
-
-
-
-        public string _numberOfBalls = "2";
-        public string NrOfBalls
+        public int _numberOfBalls = 3;
+        public int NrOfBalls
         {
             get { return _numberOfBalls; }
             set {
