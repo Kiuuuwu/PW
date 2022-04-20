@@ -13,8 +13,8 @@ namespace Data
         public double YCoordinate { get; set; }
         public double Speed { get; private set; }
         public double Radius { get; private set; }
-        public double DestinationPlaneX { get; private set; }
-        public double DestinationPlaneY { get; private set; }
+        public double DestinationPlaneX { get; set; }
+        public double DestinationPlaneY { get; set; }
 
         public Ball(double XCoordinate, double YCoordinate, double Speed, double Radius, double DestinationPlaneX, double DestinationPlaneY)
         {

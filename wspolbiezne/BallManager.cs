@@ -25,7 +25,7 @@ namespace Logic
         {
             Random random = new Random();
 
-            Ball ball = new Ball(random.Next(0, 540), random.Next(0, 260), random.NextDouble(), random.NextDouble() * 100, random.Next(-100, 100), 100);
+            Ball ball = new Ball(random.Next(0, 540), random.Next(0, 260), random.NextDouble(), random.NextDouble() * 100, random.Next(0, 540), random.Next(0, 260));
             _currentBalls.Add(ball);
         }
 
@@ -49,6 +49,16 @@ namespace Logic
             {
                 ball.YCoordinate = ball.DestinationPlaneY + ball.DestinationPlaneY - ball.YCoordinate;
             }
+            return ball;
+        }
+
+        public Ball FindNewBallPosition(Ball ball)
+        {
+            Random random = new Random();
+            ball.XCoordinate = ball.DestinationPlaneX;
+            ball.YCoordinate = ball.DestinationPlaneY;
+            ball.DestinationPlaneX = random.Next(0, 540);
+            ball.DestinationPlaneY = random.Next(0, 260);
             return ball;
         }
 
