@@ -25,8 +25,8 @@ namespace Logic
         {
             Random random = new Random();
 
-            Ball ball = new Ball(random.Next(-100, 100), random.Next(-50, 50), random.NextDouble(), random.NextDouble() * 10, random.Next(-100, 100), 100);
-            CurrentBalls.Add(ball);
+            Ball ball = new Ball(random.Next(0, 540), random.Next(0, 260), random.NextDouble(), random.NextDouble() * 100, random.Next(-100, 100), 100);
+            _currentBalls.Add(ball);
         }
 
         public Ball MoveBall(Ball ball, double nrOfSteps)

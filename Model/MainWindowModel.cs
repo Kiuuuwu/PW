@@ -6,10 +6,12 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Logic;
 
 namespace Model
 {
     public class MainWindowModel
     {
+        //ObservableCollection<Ball> CurrentBalls
     }
 }

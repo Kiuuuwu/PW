@@ -11,24 +11,24 @@ namespace View
 {
     internal class DrawingManager
     {
-        public void DrawEllipse(Canvas ballsPlane)
-        {
-            // Create a red Ellipse.
-            Ellipse myEllipse = new Ellipse();
-            SolidColorBrush mySolidColorBrush = new SolidColorBrush();
-            mySolidColorBrush.Color = Colors.Black;
-            myEllipse.Fill = mySolidColorBrush;
-            myEllipse.StrokeThickness = 2;
-            myEllipse.Stroke = Brushes.Black;
+        //public void DrawEllipse(Canvas ballsPlane)
+        //{
+        //    // Create a red Ellipse.
+        //    Ellipse myEllipse = new Ellipse();
+        //    SolidColorBrush mySolidColorBrush = new SolidColorBrush();
+        //    mySolidColorBrush.Color = Colors.Black;
+        //    myEllipse.Fill = mySolidColorBrush;
+        //    myEllipse.StrokeThickness = 2;
+        //    myEllipse.Stroke = Brushes.Black;
 
-            // Set the width and height of the Ellipse.
-            myEllipse.Width = 100;
-            myEllipse.Height = 100;
+        //    // Set the width and height of the Ellipse.
+        //    myEllipse.Width = 100;
+        //    myEllipse.Height = 100;
 
-            // How to set center of ellipse???
+        //    // How to set center of ellipse???
 
-            ballsPlane.Children.Add(myEllipse);
-        }
+        //    ballsPlane.Children.Add(myEllipse);
+        //}
 
     }
 }
