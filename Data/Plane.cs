@@ -11,7 +11,7 @@ namespace Data
         public double Width { get; private set; }
         public double Height { get; private set; }
 
-        public Plane (double width, double height)
+        public Plane(double width, double height)
         {
             this.Width = width;
             this.Height = height;

@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
-using System.Windows.Controls;
+//using System.Windows.Controls;
 using Logic;
 
-namespace Presentation.ViewModel
+namespace ViewModel
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {
@@ -19,7 +19,8 @@ namespace Presentation.ViewModel
         public int NrOfBalls
         {
             get { return _numberOfBalls; }
-            set {
+            set
+            {
                 if (value != _numberOfBalls)
                 {
                     _numberOfBalls = value;
@@ -51,12 +52,12 @@ namespace Presentation.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
 
-        void OnClickApplyButton(object sender, RoutedEventArgs e)
-        {       
-            for (int i = 0; i < NrOfBalls; i++)
-            {
-                _ballManager.CreateBall();
-            }
-        }
+        //void OnClickApplyButton(object sender, EventArgs e)
+        //{
+        //    for (int i = 0; i < NrOfBalls; i++)
+        //    {
+        //        _ballManager.CreateBall();
+        //    }
+        //}
     }
 }

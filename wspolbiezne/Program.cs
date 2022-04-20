@@ -16,7 +16,7 @@ namespace Logic
             //BallManager manager = new BallManager();
             //BallList = manager.CreateBall(BallList);
             // stworzylam kulke i chce poinformowac view ze ona zostala stworzona zeby zostala wyswietlona
-            
+
         }
 
         //public override void OnStartup(object sender, StartupEventArgs e)

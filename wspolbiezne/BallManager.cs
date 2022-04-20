@@ -25,7 +25,7 @@ namespace Logic
         {
             Random random = new Random();
 
-            Ball ball = new Ball(random.Next(-100, 100), random.Next(-50, 50), random.NextDouble(), random.NextDouble()*10, random.Next(-100, 100), 100);
+            Ball ball = new Ball(random.Next(-100, 100), random.Next(-50, 50), random.NextDouble(), random.NextDouble() * 10, random.Next(-100, 100), 100);
             CurrentBalls.Add(ball);
         }
 
@@ -33,8 +33,8 @@ namespace Logic
         {
             double distanceX = ball.DestinationPlaneX - ball.XCoordinate;
             double distanceY = ball.DestinationPlaneY - ball.YCoordinate;
-            ball.XCoordinate += distanceX/nrOfSteps;
-            ball.YCoordinate += distanceY/nrOfSteps;
+            ball.XCoordinate += distanceX / nrOfSteps;
+            ball.YCoordinate += distanceY / nrOfSteps;
 
             return ball;
         }
@@ -51,6 +51,6 @@ namespace Logic
             }
             return ball;
         }
-        
+
     }
 }
