@@ -98,16 +98,13 @@ namespace ViewModel
             }
             public void Execute(object? parameter)
             {
-                _mainWIndowViewModel.CreateBall();
+                _mainWIndowViewModel.ObsCollBall.Clear();
+                for (int i = 0; i < _mainWIndowViewModel._numberOfBalls; i++)
+                {
+                    _mainWIndowViewModel.CreateBall();
+                }
+                
             }
         }
-
-
-
-
-
-
-
-
     }
 }
