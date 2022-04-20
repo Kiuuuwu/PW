@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows;
-//using System.Windows.Controls;
 using Logic;
+using System.Drawing;
+using System.Windows;
 
 namespace ViewModel
 {
@@ -52,12 +52,9 @@ namespace ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
 
-        //void OnClickApplyButton(object sender, EventArgs e)
-        //{
-        //    for (int i = 0; i < NrOfBalls; i++)
-        //    {
-        //        _ballManager.CreateBall();
-        //    }
-        //}
+        void OnClickApplyButton(object sender, EventArgs e)
+        {
+
+        }
     }
 }
