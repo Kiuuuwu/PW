@@ -11,19 +11,26 @@ namespace ViewModel
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {
-        public ICommand Apply => new ApplyEvent(this);
+       
 
         private BallManager _ballManager;
+        //public ICommand Apply => new RelayCommand(() => _ballManager.BallsMovement(NrOfBalls));
+        
+        public ICommand Apply { get; set; }
+        public ICommand Start { get; set; }
         public ObservableCollection<Ball> ObsCollBall => _ballManager.CurrentBalls;
 
         public MainWindowViewModel()
         {
+
             _ballManager = new BallManager();
+            Apply = new RelayCommand(() => _ballManager.CreateBall(NrOfBalls));
+            Start = new RelayCommand(() => _ballManager.BallsMovement(NrOfBalls));
         }
 
        
 
-        public int _numberOfBalls;
+        private int _numberOfBalls;
         public int NrOfBalls
         {
             get { return _numberOfBalls; }
@@ -69,42 +76,53 @@ namespace ViewModel
             //}
         }
 
+        protected virtual void RaisePropertyChanged([CallerMemberName] string propertyName = null)
+        {
+
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         //void OnClickApplyButton(object sender, EventArgs e)
         //{
         //    _ballManager.CreateBall();
         //}
 
-        void CreateBall()
-        {
-            _ballManager.CreateBall();
-        }
+        //void CreateBall()
+        //{
+        //    _ballManager.CreateBall();
+        //}
+
+        //void BallsMovement()
+        //{
+        //    _ballManager.BallsMovement();
+        //}
 
 
-        public class ApplyEvent : ICommand
-        {
-            private MainWindowViewModel _mainWIndowViewModel;
-            public ApplyEvent(MainWindowViewModel mainWIndowViewModel)
-            {
-                _mainWIndowViewModel = mainWIndowViewModel;
-            }
-            public event EventHandler? CanExecuteChanged;
-            //{
-            //    add { CommandManager.RequerySuggested += value; }
-            //    remove { CommandManager.RequerySuggested -= value; }
-            //}
-            public bool CanExecute(object? parameter)
-            {
-                return true;
-            }
-            public void Execute(object? parameter)
-            {
-                _mainWIndowViewModel.ObsCollBall.Clear();
-                for (int i = 0; i < _mainWIndowViewModel._numberOfBalls; i++)
-                {
-                    _mainWIndowViewModel.CreateBall();
-                }
-                
-            }
-        }
+        //public class ApplyEvent : ICommand
+        //{
+        //    private MainWindowViewModel _mainWIndowViewModel;
+        //    public ApplyEvent(MainWindowViewModel mainWIndowViewModel)
+        //    {
+        //        _mainWIndowViewModel = mainWIndowViewModel;
+        //    }
+        //    public event EventHandler? CanExecuteChanged
+        //    {
+        //        add { CommandManager.RequerySuggested += value; }
+        //        remove { CommandManager.RequerySuggested -= value; }
+        //    }
+        //    public bool CanExecute(object? parameter)
+        //    {
+        //        return true;
+        //    }
+        //    public void Execute(object? parameter)
+        //    {
+        //        _mainWIndowViewModel.ObsCollBall.Clear();
+        //        for (int i = 0; i < _mainWIndowViewModel.NrOfBalls; i++)
+        //        {
+        //            _mainWIndowViewModel.CreateBall();
+        //        }
+        //        _mainWIndowViewModel.BallsMovement();
+        //    }
+        //}
     }
 }

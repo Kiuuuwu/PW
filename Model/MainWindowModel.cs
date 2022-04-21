@@ -11,10 +11,6 @@ using Logic;
 
 namespace Model
 {
-    //public interface IMainWindowModel
-    //{
-    //    //ObservableCollection<Ball> CurrentBalls;
-    //}
     public abstract class MainWindowModel
     {
 

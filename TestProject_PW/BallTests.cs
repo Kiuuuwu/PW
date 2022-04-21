@@ -12,30 +12,24 @@ namespace TestProject_PW
         [TestMethod]
         public void CreateBall_RandomWithinPlane_IsInsideThePlane()
         {
-            ObservableCollection<Ball> BallList = new ObservableCollection<Ball>();
             BallManager ballManager = new BallManager();
-            ballManager.CreateBall();
-            Plane plane = new Plane(400, 250);
+            ballManager.CreateBall(1);
 
-            Assert.IsTrue(BallList[0].XCoordinate <= (plane.Width) / 2 - BallList[0].Radius);
-            Assert.IsTrue(BallList[0].YCoordinate <= (plane.Height) / 2 - BallList[0].Radius);
+            Assert.IsTrue(ballManager.CurrentBalls[0].XCoordinate <= 540 - ballManager.CurrentBalls[0].Radius);
+            Assert.IsTrue(ballManager.CurrentBalls[0].YCoordinate <= 260 - ballManager.CurrentBalls[0].Radius);
         }
 
         [TestMethod]
-        public void MoveBall_ValidAmmount_IsMovedInsideThePlane()
+        public void MoveBall_ValidAmmount_IsBallMoved()
         {
-            ObservableCollection<Ball> BallList = new ObservableCollection<Ball>();
             BallManager ballManager = new BallManager();
-            ballManager.CreateBall();
-            Plane plane = new Plane(400, 250);
+            ballManager.CreateBall(1);
+            double tmp_x = ballManager.CurrentBalls[0].XCoordinate;
+            double tmp_y = ballManager.CurrentBalls[0].YCoordinate;
+            ballManager.MoveBall(ballManager.CurrentBalls[0], 5, 3, new System.Drawing.PointF(10, 10));
 
-            BallList.Add(ballManager.MoveBall(BallList[0], 5, 3));
-
-            Assert.AreNotEqual(BallList[0].XCoordinate, BallList[1].XCoordinate);
-            Assert.AreNotEqual(BallList[0].YCoordinate, BallList[1].YCoordinate);
-
-            Assert.IsTrue(BallList[1].XCoordinate <= (plane.Width) / 2 - BallList[1].Radius);
-            Assert.IsTrue(BallList[1].YCoordinate <= (plane.Height) / 2 - BallList[1].Radius);
+            Assert.AreNotEqual(ballManager.CurrentBalls[0].XCoordinate, tmp_x);
+            Assert.AreNotEqual(ballManager.CurrentBalls[0].YCoordinate, tmp_y);
         }
     }
 }
