@@ -27,8 +27,6 @@ namespace Logic
             set
             {
                 _xCoordinate = value;
-                //if (value.Equals(XCoordinate))
-                //    return;
                 RaisePropertyChanged("XCoordinate");
             }
         }
@@ -41,8 +39,6 @@ namespace Logic
             set
             {
                 _yCoordinate = value;
-                //if (value.Equals(YCoordinate))
-                //    return;
                 RaisePropertyChanged("YCoordinate");
             }
         }
