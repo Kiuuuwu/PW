@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace Logic
 {
-    public class BallManager
+    public class BallManager : LogicAPI
     {
         private ObservableCollection<Ball> _currentBalls = new ObservableCollection<Ball>();
         public ObservableCollection<Ball> CurrentBalls
@@ -13,7 +13,11 @@ namespace Logic
                 return _currentBalls;
             }
         }
-        public void CreateBall(int NrOfBalls)
+        public override ObservableCollection<Ball> getCollection()
+        {
+            return CurrentBalls;
+        }
+        public override void CreateBall(int NrOfBalls)
         {
             _currentBalls.Clear();
             Random random = new Random();
@@ -25,14 +29,14 @@ namespace Logic
 
         }
 
-        public void MoveBall(Ball ball, double nrOfFrames, double duration, PointF vector)
+        public override void MoveBall(Ball ball, double nrOfFrames, double duration, PointF vector)
         {
             ball.XCoordinate += vector.X;
             ball.YCoordinate += vector.Y;
             Thread.Sleep((int)((duration / nrOfFrames) * 100));
         }
 
-        public Ball BounceBall(Ball ball)
+        public override Ball BounceBall(Ball ball)
         {
             if (ball.DestinationPlaneY == 125 || ball.DestinationPlaneY == -125)
             {
@@ -45,7 +49,7 @@ namespace Logic
             return ball;
         }
 
-        public PointF FindNewBallPosition(Ball ball, int nrOfFrames)
+        public override PointF FindNewBallPosition(Ball ball, int nrOfFrames)
         {
             Random random = new Random();
             ball.DestinationPlaneX = random.Next(30, 630 - (int)ball.Radius*2);
@@ -56,7 +60,7 @@ namespace Logic
             return vector;
         }
 
-        public void BallsMovement()
+        public override void BallsMovement()
         {
             foreach (Ball ball in _currentBalls)
             {

@@ -1,6 +1,6 @@
 ﻿namespace Data
 {
-    public abstract class AbstractAPI
+    public abstract class DataAPI
     {     
     }
 }
