@@ -13,7 +13,7 @@ namespace Logic
 {
     public class BallManager
     {
-        //private List<Task> _tasksList = new List<Task>();   
+        //private List<Task> _tasksList = new List<Task>();
         private ObservableCollection<Ball> _currentBalls = new ObservableCollection<Ball>();
         public ObservableCollection<Ball> CurrentBalls
         {
@@ -28,19 +28,12 @@ namespace Logic
             Random random = new Random();
             for (int i = 0; i < NrOfBalls; i++)
             {
-                //Ball ball = new Ball(random.Next(0, 540), random.Next(5, 260), random.NextDouble(), random.NextDouble() * 100, random.Next(0, 540), random.Next(0, 260));
-                Ball ball = new Ball(random.Next(0, 0), random.Next(0, 0), random.NextDouble(), 40, random.Next(0, 540), random.Next(0, 260));
+                Ball ball = new Ball(random.Next(0, 540), random.Next(5, 260), random.NextDouble(), random.NextDouble() * 100, random.Next(0, 540), random.Next(0, 260));
                 _currentBalls.Add(ball);
                 Console.WriteLine($"ball x, y: {ball.XCoordinate}, {ball.YCoordinate}");
             }
                 
         }
-
-
-
-
-
-
 
         public void MoveBall(Ball ball, double nrOfFrames, double duration, PointF vector)
         {
@@ -105,14 +98,23 @@ namespace Logic
             //{
                 foreach (Ball ball in _currentBalls)
                 {
-                    //Thread thread = new Thread(()=>MoveBall(ball, 24, 14));
-                    //thread.Start();
+                    Thread thread = new Thread(() => {
+                        PointF vector = FindNewBallPosition(ball, 5);
+                        for (int j = 0; j < 5; j++)
+                        {
+                            
+                            MoveBall(ball, 7, 4, vector);
+                        }
+                            
+                        
+                        });
+                    thread.Start();
                     //Task tmp = new Task(() => MoveBall(ball, 3, 5));
                     //_tasksList.Add(tmp);
                     //tmp.Start();
-                    PointF vector = FindNewBallPosition(ball, 5);
-                    MoveBall(ball, 3, 5, vector);
-                    Console.WriteLine($"ball w foreach x, y: {ball.XCoordinate}, {ball.YCoordinate}");
+                    //PointF vector = FindNewBallPosition(ball, 5);
+                    //MoveBall(ball, 3, 5, vector);
+                    //Console.WriteLine($"ball w foreach x, y: {ball.XCoordinate}, {ball.YCoordinate}");
                 }
             //}
             
