@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -10,8 +11,12 @@ using Logic;
 
 namespace Model
 {
-    public class MainWindowModel
+    //public interface IMainWindowModel
+    //{
+    //    //ObservableCollection<Ball> CurrentBalls;
+    //}
+    public abstract class MainWindowModel
     {
-        //ObservableCollection<Ball> CurrentBalls
+
     }
 }

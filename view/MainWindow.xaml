@@ -43,7 +43,7 @@
             Content="Apply" Height="38" Width="100"
         />
 
-        <Border Background="#D6E0EB" Grid.Column="2" Grid.Row="3" Margin="10">
+        <Border Background="#D6E0EB" BorderBrush="Black" BorderThickness="2" Grid.Column="2" Grid.Row="3" Margin="10">
             <Viewbox RenderTransformOrigin="0.500,0.480">
                 <Viewbox.RenderTransform>
                     <TransformGroup>

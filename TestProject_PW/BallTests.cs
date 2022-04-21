@@ -29,7 +29,7 @@ namespace TestProject_PW
             ballManager.CreateBall();
             Plane plane = new Plane(400, 250);
 
-            BallList.Add(ballManager.MoveBall(BallList[0], 5));
+            BallList.Add(ballManager.MoveBall(BallList[0], 5, 3));
 
             Assert.AreNotEqual(BallList[0].XCoordinate, BallList[1].XCoordinate);
             Assert.AreNotEqual(BallList[0].YCoordinate, BallList[1].YCoordinate);

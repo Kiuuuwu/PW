@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -25,19 +26,29 @@ namespace Logic
         {
             Random random = new Random();
 
-            Ball ball = new Ball(random.Next(0, 540), random.Next(0, 260), random.NextDouble(), random.NextDouble() * 100, random.Next(0, 540), random.Next(0, 260));
+            Ball ball = new Ball(random.Next(0, 540), random.Next(5, 260), random.NextDouble(), random.NextDouble() * 100, random.Next(0, 540), random.Next(0, 260));
             _currentBalls.Add(ball);
         }
 
-        public Ball MoveBall(Ball ball, double nrOfSteps)
+        public Ball MoveBall(Ball ball, double nrOfFrames, double duration)
         {
-            double distanceX = ball.DestinationPlaneX - ball.XCoordinate;
-            double distanceY = ball.DestinationPlaneY - ball.YCoordinate;
-            ball.XCoordinate += distanceX / nrOfSteps;
-            ball.YCoordinate += distanceY / nrOfSteps;
+            PointF vector = new PointF();
+            vector.X = (float)((ball.DestinationPlaneX - ball.XCoordinate)/nrOfFrames);
+            vector.Y = (float)((ball.DestinationPlaneY - ball.YCoordinate)/nrOfFrames);
+            //ball.XCoordinate += distanceX / nrOfFrames;
+            //ball.YCoordinate += distanceY / nrOfFrames;
+            for (int i = 0; i < nrOfFrames; i++)
+            {
+
+                ball.XCoordinate += vector.X;
+                ball.YCoordinate += vector.Y;
+
+                Thread.Sleep((int)((duration / nrOfFrames) * 1000));
+            }
 
             return ball;
         }
+
 
         public Ball BounceBall(Ball ball)
         {
@@ -61,6 +72,5 @@ namespace Logic
             ball.DestinationPlaneY = random.Next(0, 260);
             return ball;
         }
-
     }
 }
