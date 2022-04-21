@@ -1,9 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Logic;
-using System.Drawing;
-using System.Windows;
-using Data;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -24,7 +21,7 @@ namespace ViewModel
 
             _ballManager = new BallManager();
             Apply = new RelayCommand(() => _ballManager.CreateBall(NrOfBalls));
-            Start = new RelayCommand(() => _ballManager.BallsMovement(NrOfBalls));
+            Start = new RelayCommand(() => _ballManager.BallsMovement());
         }
 
        

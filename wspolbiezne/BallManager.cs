@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
 using System.Drawing;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using Data;
 
 namespace Logic
 {
@@ -57,14 +49,14 @@ namespace Logic
         {
             Random random = new Random();
             ball.DestinationPlaneX = random.Next(30, 630 - (int)ball.Radius*2);
-            ball.DestinationPlaneY = random.Next(10, 360 - (int)ball.Radius*2);
+            ball.DestinationPlaneY = random.Next(20, 360 - (int)ball.Radius*2);
             PointF vector = new PointF();
             vector.X = (float)((ball.DestinationPlaneX - ball.XCoordinate) / nrOfFrames);
             vector.Y = (float)((ball.DestinationPlaneY - ball.YCoordinate) / nrOfFrames);
             return vector;
         }
 
-        public void BallsMovement(int NrOfBalls)
+        public void BallsMovement()
         {
             foreach (Ball ball in _currentBalls)
             {

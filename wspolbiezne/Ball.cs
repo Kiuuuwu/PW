@@ -10,7 +10,6 @@ namespace Logic
 {
     public class Ball : INotifyPropertyChanged
     {
-        //private ModelAbstractApi modelAbstractApi;
         public event PropertyChangedEventHandler? PropertyChanged;
         protected virtual void RaisePropertyChanged([CallerMemberName] string propertyName = null)
         {
