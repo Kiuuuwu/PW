@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using Logic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using Data;
 
 namespace ViewModel
 {

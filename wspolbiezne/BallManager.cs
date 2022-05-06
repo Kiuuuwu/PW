@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using Data;
+using System.Collections.ObjectModel;
 using System.Drawing;
 
 namespace Logic
@@ -23,7 +24,7 @@ namespace Logic
             Random random = new Random();
             for (int i = 0; i < NrOfBalls; i++)
             {
-                Ball ball = new Ball(random.Next(0, 580), random.Next(2, 300), random.NextDouble() / 15, random.NextDouble() * 50 + 10, random.Next(0, 540), random.Next(0, 260));
+                Ball ball = new Ball(random.Next(0, 580), random.Next(2, 300), random.NextDouble() / 10, random.NextDouble() * 50 + 10, random.Next(0, 540), random.Next(0, 260));
                 _currentBalls.Add(ball);
             }
 
