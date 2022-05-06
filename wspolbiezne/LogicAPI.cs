@@ -18,7 +18,7 @@ namespace Logic
         public abstract void CreateBall(int NrOfBalls);
         public abstract void MoveBall(Ball ball, double nrOfFrames, double duration, PointF vector);
         public abstract Ball BounceBall(Ball ball);
-        public abstract PointF FindNewBallPosition(Ball ball, int nrOfFrames);
+        public abstract PointF FindNewBallPosition(Ball ball, int nrOfFrames, PointF vector);
         public abstract void BallsMovement();
     }
 }

@@ -34,8 +34,8 @@ namespace TestProject_PW
             LogicAPI ballManager = LogicAPI.CreateAPI();
             ballManager.CreateBall(1);
 
-            Assert.IsTrue(ballManager.getCollection()[0].XCoordinate <= 580 - ballManager.getCollection()[0].Radius);
-            Assert.IsTrue(ballManager.getCollection()[0].YCoordinate <= 300 - ballManager.getCollection()[0].Radius);
+            Assert.IsTrue(ballManager.getCollection()[0].XCoordinate <= 680 - ballManager.getCollection()[0].Radius);
+            Assert.IsTrue(ballManager.getCollection()[0].YCoordinate <= 400 - ballManager.getCollection()[0].Radius);
         }
 
         
