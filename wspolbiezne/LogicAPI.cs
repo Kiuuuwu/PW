@@ -1,11 +1,6 @@
 ﻿using Data;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Logic
 {
@@ -17,9 +12,10 @@ namespace Logic
         }
         public abstract ObservableCollection<Ball> getCollection();
         public abstract void CreateBall(int NrOfBalls);
-        public abstract void MoveBall(Ball ball, double nrOfFrames, double duration, PointF vector);
-        public abstract Ball BounceBall(Ball ball);
-        public abstract PointF FindNewBallPosition(Ball ball, int nrOfFrames, PointF vector);
+        public abstract void IsCollisionAndHandleCollision(ObservableCollection<Ball> CurrentBalls);
+        public abstract void MoveBall(Ball ball, double nrOfFrames, double duration);
+        public abstract void BounceBall(Ball ball1, Ball ball2);
+        public abstract PointF FindNewBallPosition(Ball ball, int nrOfFrames);
         public abstract void BallsMovement();
     }
 }

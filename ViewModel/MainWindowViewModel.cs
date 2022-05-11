@@ -9,7 +9,7 @@ namespace ViewModel
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {
-       
+
 
         private LogicAPI _logicAPI;
 
@@ -25,7 +25,7 @@ namespace ViewModel
             Start = new RelayCommand(() => _logicAPI.BallsMovement());
         }
 
-       
+
 
         private int _numberOfBalls;
         public int NrOfBalls
