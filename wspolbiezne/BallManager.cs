@@ -7,9 +7,7 @@ namespace Logic
     public class BallManager : LogicAPI
     {
         private ObservableCollection<Ball> _currentBalls = new ObservableCollection<Ball>();
-        private static Point _leftUpPoint = new Point(0, 0);
-        private static Point _rightDownPoint = new Point(640, 360);
-        private Canvas _canvas = new Canvas(_leftUpPoint, _rightDownPoint);
+        private Canvas _canvas = new Canvas(new Point(0, 0), new Point(640, 360));
 
         public ObservableCollection<Ball> CurrentBalls
         {

@@ -14,7 +14,7 @@ namespace TestProject_PW
             ballManager.CreateBall(1);
             double tmp_x = ballManager.getCollection()[0].XCoordinate;
             double tmp_y = ballManager.getCollection()[0].YCoordinate;
-            ballManager.MoveBall(ballManager.getCollection()[0], 5, 3, new System.Drawing.PointF(10, 10));
+            ballManager.MoveBall(ballManager.getCollection()[0]);
 
             Assert.AreNotEqual(ballManager.getCollection()[0].XCoordinate, tmp_x);
             Assert.AreNotEqual(ballManager.getCollection()[0].YCoordinate, tmp_y);

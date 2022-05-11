@@ -4,10 +4,10 @@ using System.Runtime.CompilerServices;
 
 namespace Data
 {
-    public class Ball : INotifyPropertyChanged
+    public class Ball : DataAPI, INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
-        protected virtual void RaisePropertyChanged([CallerMemberName] string propertyName = null)
+        public override event PropertyChangedEventHandler? PropertyChanged;
+        protected override /*virtual*/ void RaisePropertyChanged([CallerMemberName] string propertyName = null) // tu bylo virtual ale w api nie dziala takto
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
@@ -15,7 +15,7 @@ namespace Data
         private bool _canMove = true;
         private double _xCoordinate;
         private double _yCoordinate;
-        public double XCoordinate
+        public override double XCoordinate
         {
             get
             {
@@ -27,7 +27,7 @@ namespace Data
                 RaisePropertyChanged("XCoordinate");
             }
         }
-        public double YCoordinate
+        public override double YCoordinate
         {
             get
             {
@@ -40,11 +40,11 @@ namespace Data
             }
         }
         //public int Id { get; init; }
-        public double NrOfFrames { get; set; }
-        public int Diameter { get; private set; }
-        public int Radius => Diameter / 2;
+        public override double NrOfFrames { get; set; }
+        public override int Diameter { get; set; }
+        public int Radius => Diameter / 2; // czy to jest gdzies uzywane?   // NIE MA W API
         private double _destinationPlaneX;
-        public double DestinationPlaneX
+        public override double DestinationPlaneX
         {
             get => _destinationPlaneX;
 
@@ -58,7 +58,7 @@ namespace Data
             }
         }
         private double _destinationPlaneY;
-        public double DestinationPlaneY
+        public override double DestinationPlaneY
         {
             get => _destinationPlaneY;
 
@@ -71,8 +71,8 @@ namespace Data
                 else _destinationPlaneY = value;
             }
         }
-        public double Mass { get; set; }
-        public PointF Vector { get; set; }
+        public override double Mass { get; set; }
+        public override PointF Vector { get; set; }
 
         public Ball(/*int id, */double XCoordinate, double YCoordinate, double NrOfFrames, int Diameter, double DestinationPlaneX, double DestinationPlaneY, double Mass, PointF Vector)
         {
@@ -87,7 +87,7 @@ namespace Data
             this.Vector = Vector;
         }
 
-        public void Move()
+        public override void Move()
         {
             if (!_canMove) return;
 
@@ -95,7 +95,7 @@ namespace Data
             //    || (Vector.X < 0 && XCoordinate + Vector.X < DestinationPlaneX))
             //    XCoordinate = DestinationPlaneX;
             //else
-            if (Vector.X > 0 && XCoordinate + Vector.X > 640 - Diameter)
+            if (Vector.X > 0 && XCoordinate + Vector.X > 640 - Diameter)    //todo: zmienic tutaj na canvas.punkt
                 XCoordinate = 640 - Diameter;
             else if (Vector.X < 0 && XCoordinate + Vector.X < 0)
                 XCoordinate = 0;
@@ -118,7 +118,7 @@ namespace Data
 
         //public string Details => $"Ball Id: {Id}\nBall Radius: {Radius}\nBall X,Y: {XCoordinate}, {YCoordinate}\nDestination X, Y: {DestinationPlaneX}, {DestinationPlaneY}\nVector X,Y: {Vector.X}, {Vector.Y}\n";
 
-        public void UpdateMovement(double x, double y, PointF vector, double nrOfFrames)
+        public override void UpdateMovement(double x, double y, PointF vector, double nrOfFrames)
         {
             _canMove = false;
             //var previousDestX = DestinationPlaneX;
