@@ -7,6 +7,9 @@ namespace Logic
     public class BallManager : LogicAPI
     {
         private ObservableCollection<Ball> _currentBalls = new ObservableCollection<Ball>();
+        private static Point _leftUpPoint = new Point(0, 0);
+        private static Point _rightDownPoint = new Point(640, 360);
+        private Canvas _canvas = new Canvas(_leftUpPoint, _rightDownPoint);
 
         public ObservableCollection<Ball> CurrentBalls
         {
@@ -28,8 +31,8 @@ namespace Logic
                 PointF vector = new PointF(0, 0);
                 int diameter = random.Next(40) + 20;
                 Ball ball = new Ball(
-                    random.Next(0, 640 - diameter), 
-                    random.Next(2, 360 - diameter), 
+                    random.Next(_canvas.LeftUpCorner.X, _canvas.RightDownCorner.X - diameter), 
+                    random.Next(_canvas.LeftUpCorner.Y, _canvas.RightDownCorner.Y - diameter), 
                     random.Next(20, 30), diameter,
                     0, 
                     0, 
@@ -124,8 +127,8 @@ namespace Logic
             switch (result)
             {
                 case 0: //sciana lewa
-                    ball.DestinationPlaneX = 0;
-                    ball.DestinationPlaneY = random.Next(0, 360 - (int)ball.Diameter);
+                    ball.DestinationPlaneX = _canvas.LeftUpCorner.X;
+                    ball.DestinationPlaneY = random.Next(_canvas.LeftUpCorner.Y, _canvas.RightDownCorner.Y - (int)ball.Diameter);
                     ball.Vector = new PointF
                     {
                         X = -1 * Math.Abs(ball.Vector.X),
@@ -133,8 +136,8 @@ namespace Logic
                     };
                     break;
                 case 1: //sciana prawa
-                    ball.DestinationPlaneX = 640 - (int)ball.Diameter;
-                    ball.DestinationPlaneY = random.Next(0, 360 - (int)ball.Diameter);
+                    ball.DestinationPlaneX = _canvas.RightDownCorner.X - (int)ball.Diameter;
+                    ball.DestinationPlaneY = random.Next(_canvas.LeftUpCorner.Y, _canvas.RightDownCorner.Y - (int)ball.Diameter);
                     ball.Vector = new PointF
                     {
                         X = Math.Abs(ball.Vector.X),
@@ -142,8 +145,8 @@ namespace Logic
                     };
                     break;
                 case 2: //sciana gorna
-                    ball.DestinationPlaneX = random.Next(0, 640 - (int)ball.Diameter);
-                    ball.DestinationPlaneY = 0;
+                    ball.DestinationPlaneX = random.Next(_canvas.LeftUpCorner.X, _canvas.RightDownCorner.X - (int)ball.Diameter);
+                    ball.DestinationPlaneY = _canvas.LeftUpCorner.Y;
                     ball.Vector = new PointF
                     {
                         X = ball.Vector.X,
@@ -151,8 +154,8 @@ namespace Logic
                     };
                     break;
                 case 3: //sciana dolna
-                    ball.DestinationPlaneX = random.Next(0, 640 - (int)ball.Diameter);
-                    ball.DestinationPlaneY = 360 - (int)ball.Diameter;
+                    ball.DestinationPlaneX = random.Next(_canvas.LeftUpCorner.X, _canvas.RightDownCorner.X - (int)ball.Diameter);
+                    ball.DestinationPlaneY = _canvas.RightDownCorner.Y - (int)ball.Diameter;
                     ball.Vector = new PointF
                     {
                         X = ball.Vector.X,
@@ -164,22 +167,22 @@ namespace Logic
             // jeżeli wylosujemy wspolrzedna, w ktorej juz znajduje sie kulka, to przerzucamy cel na przeciwlegla sciane
             if (lastDestinationX == ball.DestinationPlaneX)
             {
-                if (ball.DestinationPlaneX == 0)
-                    ball.DestinationPlaneX = 640 - ball.Diameter;
-                else if (ball.DestinationPlaneX == 640 - ball.Diameter)
-                    ball.DestinationPlaneX = 0;
+                if (ball.DestinationPlaneX == _canvas.LeftUpCorner.X)
+                    ball.DestinationPlaneX = _canvas.RightDownCorner.X - ball.Diameter;
+                else if (ball.DestinationPlaneX == _canvas.RightDownCorner.X - ball.Diameter)
+                    ball.DestinationPlaneX = _canvas.LeftUpCorner.X;
             }
 
             if (lastDestinationY == ball.DestinationPlaneY)
             {
-                if (ball.DestinationPlaneY == 0)
-                    ball.DestinationPlaneY = 360 - ball.Diameter;
-                else if (ball.DestinationPlaneY == 360 - ball.Diameter)
-                    ball.DestinationPlaneY = 0;
+                if (ball.DestinationPlaneY == _canvas.LeftUpCorner.Y)
+                    ball.DestinationPlaneY = _canvas.RightDownCorner.Y - ball.Diameter;
+                else if (ball.DestinationPlaneY == _canvas.RightDownCorner.Y - ball.Diameter)
+                    ball.DestinationPlaneY = _canvas.LeftUpCorner.Y;
             }
 
             // wtedy kiedy vektor jest (0, 0), czyli jeszcze przed rozpoczeciem ruchu kulek tworzymy wektor
-            if (ball.Vector.X == 0 && ball.Vector.Y == 0)
+            if (ball.Vector.X == _canvas.LeftUpCorner.X && ball.Vector.Y == _canvas.LeftUpCorner.Y)
             {
                 ball.Vector = new PointF
                 {
@@ -214,7 +217,7 @@ namespace Logic
                         //    FindNewBallPosition(ball);
                         //}
 
-                        if (!hitWall && (ball.XCoordinate <= 0 || ball.XCoordinate >= 640 - ball.Diameter))
+                        if (!hitWall && (ball.XCoordinate <= _canvas.LeftUpCorner.X || ball.XCoordinate >= _canvas.RightDownCorner.X - ball.Diameter))
                         {
                             hitWall = true;
                             ball.Vector = new PointF
@@ -224,7 +227,7 @@ namespace Logic
                             };
                         }
 
-                        if (!hitWall && (ball.YCoordinate <= 0 || ball.YCoordinate >= 360 - ball.Diameter))
+                        if (!hitWall && (ball.YCoordinate <= _canvas.LeftUpCorner.Y || ball.YCoordinate >= _canvas.RightDownCorner.Y - ball.Diameter))
                         {
                             hitWall = true;
                             ball.Vector = new PointF

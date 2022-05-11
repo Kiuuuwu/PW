@@ -118,7 +118,7 @@ namespace Data
 
         //public string Details => $"Ball Id: {Id}\nBall Radius: {Radius}\nBall X,Y: {XCoordinate}, {YCoordinate}\nDestination X, Y: {DestinationPlaneX}, {DestinationPlaneY}\nVector X,Y: {Vector.X}, {Vector.Y}\n";
 
-        public void UpdateMovement(double x, double y, PointF vector, double speed)
+        public void UpdateMovement(double x, double y, PointF vector, double nrOfFrames)
         {
             _canMove = false;
             //var previousDestX = DestinationPlaneX;
@@ -131,7 +131,7 @@ namespace Data
                 DestinationPlaneX = x;
                 DestinationPlaneY = y;
                 Vector = vector;
-                NrOfFrames = speed;
+                NrOfFrames = nrOfFrames;
                 //Console.WriteLine($"MOVEMENT UPDATED for Ball with id {Id}:\n" +
                 //$"destination X,Y: {previousDestX}, {previousDestY} => {DestinationPlaneX}, {DestinationPlaneY}\n" +
                 //$"Vector X,Y: {previousVector.X}, {previousVector.Y} => {vector.X}, {vector.Y}\n");
