@@ -26,7 +26,7 @@ namespace Logic
             for (int i = 0; i < NrOfBalls; i++)
             {
                 PointF vector = new PointF(0, 0);
-                int diameter = 30;// random.Next(50) + 10;
+                int diameter = random.Next(40) + 20;
                 Ball ball = new Ball(
                     random.Next(0, 640 - diameter), 
                     random.Next(2, 360 - diameter), 
