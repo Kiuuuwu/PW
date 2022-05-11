@@ -15,7 +15,7 @@ namespace Logic
         public abstract void IsCollisionAndHandleCollision(ObservableCollection<Ball> CurrentBalls);
         public abstract void MoveBall(Ball ball);
         public abstract void BounceBall(Ball ball1, Ball ball2);
-        public abstract PointF FindNewBallPosition(Ball ball);
+        public abstract void FindNewBallPosition(Ball ball);
         public abstract void BallsMovement();
     }
 }

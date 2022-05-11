@@ -27,7 +27,14 @@ namespace Logic
             {
                 PointF vector = new PointF(0, 0);
                 int diameter = 30;// random.Next(50) + 10;
-                Ball ball = new Ball(random.Next(0, 640 - diameter), random.Next(2, 360 - diameter), random.Next(20, 30), diameter, 0, 0, random.NextDouble() + 0.1, vector);
+                Ball ball = new Ball(
+                    random.Next(0, 640 - diameter), 
+                    random.Next(2, 360 - diameter), 
+                    random.Next(20, 30), diameter,
+                    0, 
+                    0, 
+                    random.NextDouble() + 0.1, 
+                    vector);
                 _currentBalls.Add(ball);
             }
         }
@@ -58,10 +65,10 @@ namespace Logic
             //ball1.DestinationPlaneY = ball2.DestinationPlaneY;
             //ball2.DestinationPlaneX = tmpX;
             //ball2.DestinationPlaneY = tmpY;
-            double temp = ball1.NrOfFrames - ((2 * ball2.Mass) / (ball1.Mass + ball2.Mass));
-            if (temp < 0) temp = 25;
-            double temp2 = ball2.NrOfFrames - ((2 * ball1.Mass) / (ball1.Mass + ball2.Mass));
-            if (temp2 < 0) temp2 = 25;
+            double temp = ball1.NrOfFrames + ((2 * ball2.Mass) / (ball1.Mass + ball2.Mass));
+            //if (temp < 0) temp = 25;
+            double temp2 = ball2.NrOfFrames + ((2 * ball1.Mass) / (ball1.Mass + ball2.Mass));
+            //if (temp2 < 0) temp2 = 25;
             ball1.UpdateMovement(ball2.DestinationPlaneX, ball2.DestinationPlaneY, ball2.Vector, temp);
             ball2.UpdateMovement(tmpX, tmpY, tmp, temp2);
         }
@@ -103,34 +110,59 @@ namespace Logic
             }
         }
 
-        public override PointF FindNewBallPosition(Ball ball)
+        public override void FindNewBallPosition(Ball ball)
         {
             // losowe miejsce na ktorejs ze scianek jako destination point
+
+            double lastDestinationX = ball.DestinationPlaneX;
+            double lastDestinationY = ball.DestinationPlaneY;
+
+
             Random random = new Random();
             var values = new[] { 0, 1, 2, 3 };
-            int result = values[random.Next(values.Length)];        // to zwroci cyfre od 1 do 4?
+            int result = values[random.Next(values.Length)];        // to zwroci cyfre od 0 do 3
             switch (result)
             {
                 case 0: //sciana lewa
                     ball.DestinationPlaneX = 0;
                     ball.DestinationPlaneY = random.Next(0, 360 - (int)ball.Diameter);
+                    ball.Vector = new PointF
+                    {
+                        X = -1 * Math.Abs(ball.Vector.X),
+                        Y = ball.Vector.Y
+                    };
                     break;
                 case 1: //sciana prawa
                     ball.DestinationPlaneX = 640 - (int)ball.Diameter;
                     ball.DestinationPlaneY = random.Next(0, 360 - (int)ball.Diameter);
+                    ball.Vector = new PointF
+                    {
+                        X = Math.Abs(ball.Vector.X),
+                        Y = ball.Vector.Y
+                    };
                     break;
                 case 2: //sciana gorna
                     ball.DestinationPlaneX = random.Next(0, 640 - (int)ball.Diameter);
                     ball.DestinationPlaneY = 0;
+                    ball.Vector = new PointF
+                    {
+                        X = ball.Vector.X,
+                        Y = -1 * Math.Abs(ball.Vector.Y)
+                    };
                     break;
                 case 3: //sciana dolna
                     ball.DestinationPlaneX = random.Next(0, 640 - (int)ball.Diameter);
                     ball.DestinationPlaneY = 360 - (int)ball.Diameter;
+                    ball.Vector = new PointF
+                    {
+                        X = ball.Vector.X,
+                        Y = Math.Abs(ball.Vector.Y)
+                    };
                     break;
             }
 
             // jeżeli wylosujemy wspolrzedna, w ktorej juz znajduje sie kulka, to przerzucamy cel na przeciwlegla sciane
-            if (ball.XCoordinate == ball.DestinationPlaneX)
+            if (lastDestinationX == ball.DestinationPlaneX)
             {
                 if (ball.DestinationPlaneX == 0)
                     ball.DestinationPlaneX = 640 - ball.Diameter;
@@ -138,7 +170,7 @@ namespace Logic
                     ball.DestinationPlaneX = 0;
             }
 
-            if (ball.YCoordinate == ball.DestinationPlaneY)
+            if (lastDestinationY == ball.DestinationPlaneY)
             {
                 if (ball.DestinationPlaneY == 0)
                     ball.DestinationPlaneY = 360 - ball.Diameter;
@@ -146,11 +178,21 @@ namespace Logic
                     ball.DestinationPlaneY = 0;
             }
 
-            return new PointF
+            // wtedy kiedy vektor jest (0, 0), czyli jeszcze przed rozpoczeciem ruchu kulek tworzymy wektor
+            if (ball.Vector.X == 0 && ball.Vector.Y == 0)
             {
-                X = (float)((ball.DestinationPlaneX - ball.XCoordinate) / ball.NrOfFrames),
-                Y = (float)((ball.DestinationPlaneY - ball.YCoordinate) / ball.NrOfFrames)
-            };
+                ball.Vector = new PointF
+                {
+                    X = (float)((ball.DestinationPlaneX - ball.XCoordinate) / ball.NrOfFrames),
+                    Y = (float)((ball.DestinationPlaneY - ball.YCoordinate) / ball.NrOfFrames)
+                };
+            }
+
+            //return new PointF
+            //{
+            //    X = (float)((ball.DestinationPlaneX - ball.XCoordinate) / ball.NrOfFrames),
+            //    Y = (float)((ball.DestinationPlaneY - ball.YCoordinate) / ball.NrOfFrames)
+            //};
         }
 
         public override void BallsMovement()
@@ -159,19 +201,41 @@ namespace Logic
             {
                 Task task = new Task(() =>
                 {
-                    ball.Vector = FindNewBallPosition(ball);
+                    bool hitWall = false;
+                    FindNewBallPosition(ball);
                     while (true)
                     {
                         // todo: pilka znajduje nowy wektor w momencie gdy sie odbije od sciany lub innej pilki
-                        if ((ball.Vector.X > 0 && ball.Vector.Y > 0 && ball.XCoordinate >= ball.DestinationPlaneX && ball.YCoordinate >= ball.DestinationPlaneY) ||
-                        (ball.Vector.X > 0 && ball.Vector.Y < 0 && ball.XCoordinate >= ball.DestinationPlaneX && ball.YCoordinate <= ball.DestinationPlaneY) ||
-                        (ball.Vector.X < 0 && ball.Vector.Y < 0 && ball.XCoordinate <= ball.DestinationPlaneX && ball.YCoordinate <= ball.DestinationPlaneY) ||
-                        (ball.Vector.X < 0 && ball.Vector.Y > 0 && ball.XCoordinate <= ball.DestinationPlaneX && ball.YCoordinate >= ball.DestinationPlaneY))
+                        //if ((ball.Vector.X > 0 && ball.Vector.Y > 0 && ball.XCoordinate >= ball.DestinationPlaneX && ball.YCoordinate >= ball.DestinationPlaneY) ||
+                        //(ball.Vector.X > 0 && ball.Vector.Y < 0 && ball.XCoordinate >= ball.DestinationPlaneX && ball.YCoordinate <= ball.DestinationPlaneY) ||
+                        //(ball.Vector.X < 0 && ball.Vector.Y < 0 && ball.XCoordinate <= ball.DestinationPlaneX && ball.YCoordinate <= ball.DestinationPlaneY) ||
+                        //(ball.Vector.X < 0 && ball.Vector.Y > 0 && ball.XCoordinate <= ball.DestinationPlaneX && ball.YCoordinate >= ball.DestinationPlaneY))
+                        //{
+                        //    FindNewBallPosition(ball);
+                        //}
+
+                        if (!hitWall && (ball.XCoordinate <= 0 || ball.XCoordinate >= 640 - ball.Diameter))
                         {
-                            ball.Vector = FindNewBallPosition(ball);
+                            hitWall = true;
+                            ball.Vector = new PointF
+                            {
+                                X = -ball.Vector.X,
+                                Y = ball.Vector.Y
+                            };
+                        }
+
+                        if (!hitWall && (ball.YCoordinate <= 0 || ball.YCoordinate >= 360 - ball.Diameter))
+                        {
+                            hitWall = true;
+                            ball.Vector = new PointF
+                            {
+                                X = ball.Vector.X,
+                                Y = -ball.Vector.Y
+                            };
                         }
 
                         MoveBall(ball);
+                        hitWall = false;
                     }
                 });
                 task.Start();

@@ -91,15 +91,25 @@ namespace Data
         {
             if (!_canMove) return;
 
-            if ((Vector.X > 0 && XCoordinate + Vector.X > DestinationPlaneX)
-                || (Vector.X < 0 && XCoordinate + Vector.X < DestinationPlaneX))
-                XCoordinate = DestinationPlaneX;
+            //if ((Vector.X > 0 && XCoordinate + Vector.X > DestinationPlaneX)
+            //    || (Vector.X < 0 && XCoordinate + Vector.X < DestinationPlaneX))
+            //    XCoordinate = DestinationPlaneX;
+            //else
+            if (Vector.X > 0 && XCoordinate + Vector.X > 640 - Diameter)
+                XCoordinate = 640 - Diameter;
+            else if (Vector.X < 0 && XCoordinate + Vector.X < 0)
+                XCoordinate = 0;
             else
                 XCoordinate += Vector.X;
 
-            if ((Vector.Y > 0 && YCoordinate + Vector.Y > DestinationPlaneY)
-                || (Vector.Y < 0 && YCoordinate + Vector.Y < DestinationPlaneY))
-                YCoordinate = DestinationPlaneY;
+            //if ((Vector.Y > 0 && YCoordinate + Vector.Y > DestinationPlaneY)
+            //    || (Vector.Y < 0 && YCoordinate + Vector.Y < DestinationPlaneY))
+            //    YCoordinate = DestinationPlaneY;
+            //else
+            if (Vector.Y > 0 && YCoordinate + Vector.Y > 360 - Diameter)
+                YCoordinate = 360 - Diameter;
+            else if (Vector.Y < 0 && YCoordinate + Vector.Y < 0)
+                YCoordinate = 0;
             else
                 YCoordinate += Vector.Y;
 
@@ -108,7 +118,7 @@ namespace Data
 
         //public string Details => $"Ball Id: {Id}\nBall Radius: {Radius}\nBall X,Y: {XCoordinate}, {YCoordinate}\nDestination X, Y: {DestinationPlaneX}, {DestinationPlaneY}\nVector X,Y: {Vector.X}, {Vector.Y}\n";
 
-        public void UpdateMovement(double x, double y, PointF vector, double nrOfFrames)
+        public void UpdateMovement(double x, double y, PointF vector, double speed)
         {
             _canMove = false;
             //var previousDestX = DestinationPlaneX;
@@ -121,7 +131,7 @@ namespace Data
                 DestinationPlaneX = x;
                 DestinationPlaneY = y;
                 Vector = vector;
-                NrOfFrames = nrOfFrames;
+                NrOfFrames = speed;
                 //Console.WriteLine($"MOVEMENT UPDATED for Ball with id {Id}:\n" +
                 //$"destination X,Y: {previousDestX}, {previousDestY} => {DestinationPlaneX}, {DestinationPlaneY}\n" +
                 //$"Vector X,Y: {previousVector.X}, {previousVector.Y} => {vector.X}, {vector.Y}\n");
