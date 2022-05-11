@@ -4,7 +4,7 @@ using System.Drawing;
 
 namespace Logic
 {
-    public class BallManager : LogicAPI
+    public class BallManager : LogicAPI //TODO: JAK TUTAJ UZYWAC DATAAPI??
     {
         private ObservableCollection<Ball> _currentBalls = new ObservableCollection<Ball>();
         private Canvas _canvas = new Canvas(new Point(0, 0), new Point(640, 360));
