@@ -12,6 +12,7 @@ namespace Data
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         private object lockObject = new object();
+        private bool _canMove = true;
         private double _xCoordinate;
         private double _yCoordinate;
         public double XCoordinate
@@ -39,7 +40,7 @@ namespace Data
             }
         }
         //public int Id { get; init; }
-        public double Speed { get; set; }
+        public double NrOfFrames { get; set; }
         public int Diameter { get; private set; }
         public int Radius => Diameter / 2;
         private double _destinationPlaneX;
@@ -73,21 +74,23 @@ namespace Data
         public double Mass { get; set; }
         public PointF Vector { get; set; }
 
-        public Ball(/*int id, */double XCoordinate, double YCoordinate, double Speed, int Diameter, double DestinationPlaneX, double DestinationPlaneY, double Mass, PointF Vector)
+        public Ball(/*int id, */double XCoordinate, double YCoordinate, double NrOfFrames, int Diameter, double DestinationPlaneX, double DestinationPlaneY, double Mass, PointF Vector)
         {
             //this.Id = id;
             this.Diameter = Diameter;
             this.XCoordinate = XCoordinate;
             this.YCoordinate = YCoordinate;
-            this.Speed = Speed;
+            this.NrOfFrames = NrOfFrames;
             this.DestinationPlaneX = DestinationPlaneX;
             this.DestinationPlaneY = DestinationPlaneY;
             this.Mass = Mass;
             this.Vector = Vector;
         }
 
-        public void Move(double nrOfFrames, double duration)
+        public void Move()
         {
+            if (!_canMove) return;
+
             if ((Vector.X > 0 && XCoordinate + Vector.X > DestinationPlaneX)
                 || (Vector.X < 0 && XCoordinate + Vector.X < DestinationPlaneX))
                 XCoordinate = DestinationPlaneX;
@@ -100,13 +103,14 @@ namespace Data
             else
                 YCoordinate += Vector.Y;
 
-            Speed = (int)(duration / nrOfFrames * 100);
+            //Speed = (int)(duration / nrOfFrames * 100);
         }
 
         //public string Details => $"Ball Id: {Id}\nBall Radius: {Radius}\nBall X,Y: {XCoordinate}, {YCoordinate}\nDestination X, Y: {DestinationPlaneX}, {DestinationPlaneY}\nVector X,Y: {Vector.X}, {Vector.Y}\n";
 
-        public void UpdateMovement(double x, double y, PointF vector, double speed)
+        public void UpdateMovement(double x, double y, PointF vector, double nrOfFrames)
         {
+            _canMove = false;
             //var previousDestX = DestinationPlaneX;
             //var previousDestY = DestinationPlaneY;
             //var previousVector = Vector;
@@ -117,11 +121,12 @@ namespace Data
                 DestinationPlaneX = x;
                 DestinationPlaneY = y;
                 Vector = vector;
-                Speed = speed;
+                NrOfFrames = nrOfFrames;
                 //Console.WriteLine($"MOVEMENT UPDATED for Ball with id {Id}:\n" +
                 //$"destination X,Y: {previousDestX}, {previousDestY} => {DestinationPlaneX}, {DestinationPlaneY}\n" +
                 //$"Vector X,Y: {previousVector.X}, {previousVector.Y} => {vector.X}, {vector.Y}\n");
             }
+            _canMove = true;
         }
     }
 }

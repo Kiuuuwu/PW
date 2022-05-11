@@ -27,18 +27,19 @@ namespace Logic
             {
                 PointF vector = new PointF(0, 0);
                 int diameter = 30;// random.Next(50) + 10;
-                Ball ball = new Ball(random.Next(0, 640 - diameter), random.Next(2, 360 - diameter), random.NextDouble() / 10, diameter, 0, 0, random.Next(2, 300), vector);
+                Ball ball = new Ball(random.Next(0, 640 - diameter), random.Next(2, 360 - diameter), random.Next(20, 30), diameter, 0, 0, random.NextDouble() + 0.1, vector);
                 _currentBalls.Add(ball);
             }
         }
 
-        public override void MoveBall(Ball ball, double nrOfFrames, double duration)
+        public override void MoveBall(Ball ball)
         {
             //ball.XCoordinate += ball.Vector.X;
             //ball.YCoordinate += ball.Vector.Y;
             //ball.Speed = (int)((duration / nrOfFrames) * 100);
-            ball.Move(nrOfFrames, duration);
-            Thread.Sleep((int)((duration / nrOfFrames) * 100));
+            ball.Move();
+            //Thread.Sleep((int)(ball.Speed));
+            Thread.Sleep(50);
         }
 
         public override void BounceBall(Ball ball1, Ball ball2)  // odbijanie pilek
@@ -57,9 +58,12 @@ namespace Logic
             //ball1.DestinationPlaneY = ball2.DestinationPlaneY;
             //ball2.DestinationPlaneX = tmpX;
             //ball2.DestinationPlaneY = tmpY;
-
-            ball1.UpdateMovement(ball2.DestinationPlaneX, ball2.DestinationPlaneY, ball2.Vector, ball1.Speed - ((2 * ball2.Mass) / ball1.Mass + ball2.Mass));
-            ball2.UpdateMovement(tmpX, tmpY, tmp, ball2.Speed - ((2 * ball1.Mass) / ball1.Mass + ball2.Mass));
+            double temp = ball1.NrOfFrames - ((2 * ball2.Mass) / (ball1.Mass + ball2.Mass));
+            if (temp < 0) temp = 25;
+            double temp2 = ball2.NrOfFrames - ((2 * ball1.Mass) / (ball1.Mass + ball2.Mass));
+            if (temp2 < 0) temp2 = 25;
+            ball1.UpdateMovement(ball2.DestinationPlaneX, ball2.DestinationPlaneY, ball2.Vector, temp);
+            ball2.UpdateMovement(tmpX, tmpY, tmp, temp2);
         }
         public override /*async*/ void IsCollisionAndHandleCollision(ObservableCollection<Ball> CurrentBalls) // czy pilka zderza sie z inna pilka
         {
@@ -99,7 +103,7 @@ namespace Logic
             }
         }
 
-        public override PointF FindNewBallPosition(Ball ball, int nrOfFrames)
+        public override PointF FindNewBallPosition(Ball ball)
         {
             // losowe miejsce na ktorejs ze scianek jako destination point
             Random random = new Random();
@@ -144,8 +148,8 @@ namespace Logic
 
             return new PointF
             {
-                X = (float)((ball.DestinationPlaneX - ball.XCoordinate) / nrOfFrames),
-                Y = (float)((ball.DestinationPlaneY - ball.YCoordinate) / nrOfFrames)
+                X = (float)((ball.DestinationPlaneX - ball.XCoordinate) / ball.NrOfFrames),
+                Y = (float)((ball.DestinationPlaneY - ball.YCoordinate) / ball.NrOfFrames)
             };
         }
 
@@ -155,7 +159,7 @@ namespace Logic
             {
                 Task task = new Task(() =>
                 {
-                    ball.Vector = FindNewBallPosition(ball, 25);
+                    ball.Vector = FindNewBallPosition(ball);
                     while (true)
                     {
                         // todo: pilka znajduje nowy wektor w momencie gdy sie odbije od sciany lub innej pilki
@@ -164,10 +168,10 @@ namespace Logic
                         (ball.Vector.X < 0 && ball.Vector.Y < 0 && ball.XCoordinate <= ball.DestinationPlaneX && ball.YCoordinate <= ball.DestinationPlaneY) ||
                         (ball.Vector.X < 0 && ball.Vector.Y > 0 && ball.XCoordinate <= ball.DestinationPlaneX && ball.YCoordinate >= ball.DestinationPlaneY))
                         {
-                            ball.Vector = FindNewBallPosition(ball, 25);
+                            ball.Vector = FindNewBallPosition(ball);
                         }
 
-                        MoveBall(ball, 7, 4);
+                        MoveBall(ball);
                     }
                 });
                 task.Start();
