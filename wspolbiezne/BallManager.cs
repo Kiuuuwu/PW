@@ -22,7 +22,7 @@ namespace Logic
             for (int i = 0; i < NrOfBalls; i++)
             {
                 PointF vector = new PointF(0, 0);
-                int diameter = random.Next(40) + 20;
+                int diameter = random.Next(40, 60);
                 DataAPI ball = new Ball(
                     random.Next(_canvas.LeftUpCorner.X, _canvas.RightDownCorner.X - diameter),
                     random.Next(_canvas.LeftUpCorner.Y, _canvas.RightDownCorner.Y - diameter),
@@ -51,7 +51,7 @@ namespace Logic
             Thread.Sleep(50);
         }
 
-        public override void BounceBall(DataAPI ball1, DataAPI ball2)  // odbijanie pilek
+        public override void BounceBall(DataAPI ball1, DataAPI ball2)  // odbijanie pilek od pilek
         {
             PointF tmp = ball1.Vector;
             double tmpX = ball1.DestinationPlaneX;

@@ -47,30 +47,5 @@ namespace TestProject_PW
             Assert.IsTrue(ballManager.getCollection()[0].YCoordinate <= canvas.RightDownCorner.Y - ballManager.getCollection()[0].Diameter &&
                 ballManager.getCollection()[0].YCoordinate >= canvas.LeftUpCorner.Y - ballManager.getCollection()[0].Diameter);
         }
-
-        //[TestMethod]
-        //public void IsCollisionAndHandleCollision_NoCollision_DictionaryValueIsFalse()
-        //{
-        //    LogicAPI ballManager = LogicAPI.CreateAPI();
-        //    ballManager.CreateBall(2);
-
-        //    ballManager.getCollection()[0].XCoordinate = 0;
-        //    ballManager.getCollection()[0].YCoordinate = 0;
-        //    ballManager.getCollection()[0].Diameter = 10;
-
-        //    ballManager.getCollection()[1].XCoordinate = 20;
-        //    ballManager.getCollection()[1].YCoordinate = 20;
-        //    ballManager.getCollection()[1].Diameter = 10;
-
-        //    Dictionary<(int, int), bool> bouncesDict = new Dictionary<(int, int), bool>();
-        //    ballManager.IsCollisionAndHandleCollision(ballManager.getCollection());
-
-        //    Assert.IsFalse(bouncesDict[(0, 1)]);
-        //}
-
-
-
-
-
     }
 }

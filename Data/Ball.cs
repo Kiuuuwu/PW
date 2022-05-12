@@ -6,8 +6,9 @@ namespace Data
 {
     public class Ball : DataAPI, INotifyPropertyChanged
     {
+        private Canvas _canvas = new Canvas(new Point(0, 0), new Point(640, 360));
         public override event PropertyChangedEventHandler? PropertyChanged;
-        protected override /*virtual*/ void RaisePropertyChanged([CallerMemberName] string propertyName = null) // tu bylo virtual ale w api nie dziala takto
+        protected override void RaisePropertyChanged([CallerMemberName] string propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
@@ -50,9 +51,9 @@ namespace Data
 
             set
             {
-                if (value > 640 - Diameter)
+                if (value > _canvas.RightDownCorner.X - Diameter)
                 {
-                    _destinationPlaneX = 640 - Diameter;
+                    _destinationPlaneX = _canvas.RightDownCorner.X - Diameter;
                 }
                 else _destinationPlaneX = value;
             }
@@ -64,9 +65,9 @@ namespace Data
 
             set
             {
-                if (value > 360 - Diameter)
+                if (value > _canvas.RightDownCorner.Y - Diameter)
                 {
-                    _destinationPlaneY = 360 - Diameter;
+                    _destinationPlaneY = _canvas.RightDownCorner.Y - Diameter;
                 }
                 else _destinationPlaneY = value;
             }
@@ -95,10 +96,10 @@ namespace Data
             //    || (Vector.X < 0 && XCoordinate + Vector.X < DestinationPlaneX))
             //    XCoordinate = DestinationPlaneX;
             //else
-            if (Vector.X > 0 && XCoordinate + Vector.X > 640 - Diameter)    //todo: zmienic tutaj na canvas.punkt
-                XCoordinate = 640 - Diameter;
-            else if (Vector.X < 0 && XCoordinate + Vector.X < 0)
-                XCoordinate = 0;
+            if (Vector.X > _canvas.LeftUpCorner.X && XCoordinate + Vector.X > _canvas.RightDownCorner.X - Diameter)
+                XCoordinate = _canvas.RightDownCorner.X - Diameter;
+            else if (Vector.X < _canvas.LeftUpCorner.X && XCoordinate + Vector.X < _canvas.LeftUpCorner.X)
+                XCoordinate = _canvas.LeftUpCorner.X;
             else
                 XCoordinate += Vector.X;
 
@@ -106,25 +107,16 @@ namespace Data
             //    || (Vector.Y < 0 && YCoordinate + Vector.Y < DestinationPlaneY))
             //    YCoordinate = DestinationPlaneY;
             //else
-            if (Vector.Y > 0 && YCoordinate + Vector.Y > 360 - Diameter)
-                YCoordinate = 360 - Diameter;
-            else if (Vector.Y < 0 && YCoordinate + Vector.Y < 0)
-                YCoordinate = 0;
+            if (Vector.Y > _canvas.LeftUpCorner.Y && YCoordinate + Vector.Y > _canvas.RightDownCorner.Y - Diameter)
+                YCoordinate = _canvas.RightDownCorner.Y - Diameter;
+            else if (Vector.Y < _canvas.LeftUpCorner.Y && YCoordinate + Vector.Y < _canvas.LeftUpCorner.Y)
+                YCoordinate = _canvas.LeftUpCorner.Y;
             else
                 YCoordinate += Vector.Y;
-
-            //Speed = (int)(duration / nrOfFrames * 100);
         }
-
-        //public string Details => $"Ball Id: {Id}\nBall Radius: {Radius}\nBall X,Y: {XCoordinate}, {YCoordinate}\nDestination X, Y: {DestinationPlaneX}, {DestinationPlaneY}\nVector X,Y: {Vector.X}, {Vector.Y}\n";
-
         public override void UpdateMovement(double x, double y, PointF vector, double nrOfFrames)
         {
             _canMove = false;
-            //var previousDestX = DestinationPlaneX;
-            //var previousDestY = DestinationPlaneY;
-            //var previousVector = Vector;
-
             // sekcja krytyczna - tylko 1 watek na raz moze wykonac te logike
             lock (lockObject)
             {
@@ -132,9 +124,6 @@ namespace Data
                 DestinationPlaneY = y;
                 Vector = vector;
                 NrOfFrames = nrOfFrames;
-                //Console.WriteLine($"MOVEMENT UPDATED for Ball with id {Id}:\n" +
-                //$"destination X,Y: {previousDestX}, {previousDestY} => {DestinationPlaneX}, {DestinationPlaneY}\n" +
-                //$"Vector X,Y: {previousVector.X}, {previousVector.Y} => {vector.X}, {vector.Y}\n");
             }
             _canMove = true;
         }
