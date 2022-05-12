@@ -6,17 +6,17 @@ namespace Logic
 {
     public class BallManager : LogicAPI //TODO: JAK TUTAJ UZYWAC DATAAPI??
     {
-        private ObservableCollection<Ball> _currentBalls = new ObservableCollection<Ball>();
+        private ObservableCollection<DataAPI> _currentBalls = new ObservableCollection<DataAPI>();
         private Canvas _canvas = new Canvas(new Point(0, 0), new Point(640, 360));
 
-        public ObservableCollection<Ball> CurrentBalls
+        public ObservableCollection<DataAPI> CurrentBalls
         {
             get
             {
                 return _currentBalls;
             }
         }
-        public override ObservableCollection<Ball> getCollection()
+        public override ObservableCollection<DataAPI> getCollection()
         {
             return CurrentBalls;
         }
@@ -28,7 +28,7 @@ namespace Logic
             {
                 PointF vector = new PointF(0, 0);
                 int diameter = random.Next(40) + 20;
-                Ball ball = new Ball(
+                DataAPI ball = new Ball(
                     random.Next(_canvas.LeftUpCorner.X, _canvas.RightDownCorner.X - diameter), 
                     random.Next(_canvas.LeftUpCorner.Y, _canvas.RightDownCorner.Y - diameter), 
                     random.Next(20, 30), diameter,
@@ -40,40 +40,23 @@ namespace Logic
             }
         }
 
-        public override void MoveBall(Ball ball)
+        public override void MoveBall(DataAPI ball)
         {
-            //ball.XCoordinate += ball.Vector.X;
-            //ball.YCoordinate += ball.Vector.Y;
-            //ball.Speed = (int)((duration / nrOfFrames) * 100);
             ball.Move();
-            //Thread.Sleep((int)(ball.Speed));
             Thread.Sleep(50);
         }
 
-        public override void BounceBall(Ball ball1, Ball ball2)  // odbijanie pilek
+        public override void BounceBall(DataAPI ball1, DataAPI ball2)  // odbijanie pilek
         {
-            // te wzory nie sa poprawne ale to chyba nie jest zbyt wazne
-            //ball1.Speed = ball1.Speed - ((2 * ball2.Mass) / ball1.Mass + ball2.Mass);
-            //ball2.Speed = ball2.Speed - ((2 * ball1.Mass) / ball1.Mass + ball2.Mass);
-
-            PointF tmp = ball1.Vector;  // czy ten wektor jest gdziekolwiek uzywany? chyba nie
-            //ball1.Vector = ball2.Vector;
-            //ball2.Vector = tmp;
-
+            PointF tmp = ball1.Vector;
             double tmpX = ball1.DestinationPlaneX;
             double tmpY = ball1.DestinationPlaneY;
-            //ball1.DestinationPlaneX = ball2.DestinationPlaneX;
-            //ball1.DestinationPlaneY = ball2.DestinationPlaneY;
-            //ball2.DestinationPlaneX = tmpX;
-            //ball2.DestinationPlaneY = tmpY;
             double temp = ball1.NrOfFrames + ((2 * ball2.Mass) / (ball1.Mass + ball2.Mass));
-            //if (temp < 0) temp = 25;
             double temp2 = ball2.NrOfFrames + ((2 * ball1.Mass) / (ball1.Mass + ball2.Mass));
-            //if (temp2 < 0) temp2 = 25;
             ball1.UpdateMovement(ball2.DestinationPlaneX, ball2.DestinationPlaneY, ball2.Vector, temp);
             ball2.UpdateMovement(tmpX, tmpY, tmp, temp2);
         }
-        public override /*async*/ void IsCollisionAndHandleCollision(ObservableCollection<Ball> CurrentBalls) // czy pilka zderza sie z inna pilka
+        public override /*async*/ void IsCollisionAndHandleCollision(ObservableCollection<DataAPI> CurrentBalls) // czy pilka zderza sie z inna pilka
         {
             double distanceX;
             double distanceY;
@@ -111,10 +94,9 @@ namespace Logic
             }
         }
 
-        public override void FindNewBallPosition(Ball ball)
+        public override void FindNewBallPosition(DataAPI ball)
         {
             // losowe miejsce na ktorejs ze scianek jako destination point
-
             double lastDestinationX = ball.DestinationPlaneX;
             double lastDestinationY = ball.DestinationPlaneY;
 
@@ -188,17 +170,11 @@ namespace Logic
                     Y = (float)((ball.DestinationPlaneY - ball.YCoordinate) / ball.NrOfFrames)
                 };
             }
-
-            //return new PointF
-            //{
-            //    X = (float)((ball.DestinationPlaneX - ball.XCoordinate) / ball.NrOfFrames),
-            //    Y = (float)((ball.DestinationPlaneY - ball.YCoordinate) / ball.NrOfFrames)
-            //};
         }
 
         public override void BallsMovement()
         {
-            foreach (Ball ball in _currentBalls)
+            foreach (DataAPI ball in _currentBalls)
             {
                 Task task = new Task(() =>
                 {
@@ -206,15 +182,6 @@ namespace Logic
                     FindNewBallPosition(ball);
                     while (true)
                     {
-                        // todo: pilka znajduje nowy wektor w momencie gdy sie odbije od sciany lub innej pilki
-                        //if ((ball.Vector.X > 0 && ball.Vector.Y > 0 && ball.XCoordinate >= ball.DestinationPlaneX && ball.YCoordinate >= ball.DestinationPlaneY) ||
-                        //(ball.Vector.X > 0 && ball.Vector.Y < 0 && ball.XCoordinate >= ball.DestinationPlaneX && ball.YCoordinate <= ball.DestinationPlaneY) ||
-                        //(ball.Vector.X < 0 && ball.Vector.Y < 0 && ball.XCoordinate <= ball.DestinationPlaneX && ball.YCoordinate <= ball.DestinationPlaneY) ||
-                        //(ball.Vector.X < 0 && ball.Vector.Y > 0 && ball.XCoordinate <= ball.DestinationPlaneX && ball.YCoordinate >= ball.DestinationPlaneY))
-                        //{
-                        //    FindNewBallPosition(ball);
-                        //}
-
                         if (!hitWall && (ball.XCoordinate <= _canvas.LeftUpCorner.X || ball.XCoordinate >= _canvas.RightDownCorner.X - ball.Diameter))
                         {
                             hitWall = true;

@@ -15,7 +15,7 @@ namespace ViewModel
 
         public ICommand Apply { get; set; }
         public ICommand Start { get; set; }
-        public ObservableCollection<Ball> ObsCollBall => _logicAPI.getCollection();
+        public ObservableCollection<DataAPI> ObsCollBall => _logicAPI.getCollection();
 
         public MainWindowViewModel()
         {

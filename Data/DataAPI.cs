@@ -16,6 +16,7 @@ namespace Data
         {
             get; set;
         }
+        public abstract int Radius { get;  }
         public abstract double NrOfFrames { get; set; }
         public abstract int Diameter { get; set; }
         public abstract double DestinationPlaneX { get; set; }

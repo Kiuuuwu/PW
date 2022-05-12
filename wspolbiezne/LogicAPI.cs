@@ -10,12 +10,12 @@ namespace Logic
         {
             return new BallManager();
         }
-        public abstract ObservableCollection<Ball> getCollection();
+        public abstract ObservableCollection<DataAPI> getCollection();
         public abstract void CreateBall(int NrOfBalls);
-        public abstract void IsCollisionAndHandleCollision(ObservableCollection<Ball> CurrentBalls);
-        public abstract void MoveBall(Ball ball);
-        public abstract void BounceBall(Ball ball1, Ball ball2);
-        public abstract void FindNewBallPosition(Ball ball);
+        public abstract void IsCollisionAndHandleCollision(ObservableCollection<DataAPI> CurrentBalls);
+        public abstract void MoveBall(DataAPI ball);
+        public abstract void BounceBall(DataAPI ball1, DataAPI ball2);
+        public abstract void FindNewBallPosition(DataAPI ball);
         public abstract void BallsMovement();
     }
 }

@@ -42,7 +42,7 @@ namespace Data
         //public int Id { get; init; }
         public override double NrOfFrames { get; set; }
         public override int Diameter { get; set; }
-        public int Radius => Diameter / 2; // czy to jest gdzies uzywane?   // NIE MA W API
+        public override int Radius => Diameter / 2; // czy to jest gdzies uzywane?   // NIE MA W API
         private double _destinationPlaneX;
         public override double DestinationPlaneX
         {
