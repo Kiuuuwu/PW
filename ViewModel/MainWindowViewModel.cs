@@ -21,8 +21,8 @@ namespace ViewModel
         {
 
             _logicAPI = LogicAPI.CreateAPI();
-            Apply = new RelayCommand(() => _logicAPI.CreateBall(NrOfBalls));
-            Start = new RelayCommand(() => _logicAPI.BallsMovement());
+            Apply = new RelayCommand(async () => await _logicAPI.CreateBall(NrOfBalls));
+            Start = new RelayCommand(async () => await _logicAPI.BallsMovement());
         }
 
 

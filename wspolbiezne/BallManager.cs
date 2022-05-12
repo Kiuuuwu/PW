@@ -20,7 +20,7 @@ namespace Logic
         {
             return CurrentBalls;
         }
-        public override void CreateBall(int NrOfBalls)
+        public override async Task CreateBall(int NrOfBalls)
         {
             _currentBalls.Clear();
             Random random = new Random();
@@ -172,7 +172,7 @@ namespace Logic
             }
         }
 
-        public override void BallsMovement()
+        public override async Task BallsMovement()
         {
             foreach (DataAPI ball in _currentBalls)
             {
