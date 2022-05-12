@@ -15,13 +15,16 @@ namespace TestProject_PW
         {
             LogicAPI ballManager = LogicAPI.CreateAPI();
             ballManager.CreateBall(1);
-            ballManager.FindNewBallPosition(ballManager.getCollection()[0]);
-            double tmp_x = ballManager.getCollection()[0].XCoordinate;
-            double tmp_y = ballManager.getCollection()[0].YCoordinate;
-            ballManager.MoveBall(ballManager.getCollection()[0]);
 
-            Assert.AreNotEqual(ballManager.getCollection()[0].XCoordinate, tmp_x);
-            Assert.AreNotEqual(ballManager.getCollection()[0].YCoordinate, tmp_y);
+            DataAPI ball = new Ball(10, 200, 25, 15, 100, 0, 20, new PointF(2, 5));
+
+            ballManager.FindNewBallPosition(ball);
+            double tmp_x = ball.XCoordinate;
+            double tmp_y = ball.YCoordinate;
+            ballManager.MoveBall(ball);
+
+            Assert.AreNotEqual(ball.XCoordinate, tmp_x);
+            Assert.AreNotEqual(ball.YCoordinate, tmp_y);
         }
 
         [TestMethod]

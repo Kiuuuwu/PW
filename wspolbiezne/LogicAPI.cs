@@ -1,6 +1,6 @@
 ﻿using Data;
 using System.Collections.ObjectModel;
-using System.Drawing;
+using Model;
 
 namespace Logic
 {
@@ -10,7 +10,7 @@ namespace Logic
         {
             return new BallManager();
         }
-        public abstract ObservableCollection<DataAPI> getCollection();
+        public abstract ObservableCollection<BallModel> getCollection();
         public abstract Task CreateBall(int NrOfBalls);
         public abstract void IsCollisionAndHandleCollision(ObservableCollection<DataAPI> CurrentBalls);
         public abstract void MoveBall(DataAPI ball);

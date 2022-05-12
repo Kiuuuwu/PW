@@ -4,6 +4,7 @@ using Logic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Data;
+using Model;
 
 namespace ViewModel
 {
@@ -15,17 +16,15 @@ namespace ViewModel
 
         public ICommand Apply { get; set; }
         public ICommand Start { get; set; }
-        public ObservableCollection<DataAPI> ObsCollBall => _logicAPI.getCollection();
+        public ObservableCollection<BallModel> ObsCollBall => _logicAPI.getCollection();
+
 
         public MainWindowViewModel()
         {
-
             _logicAPI = LogicAPI.CreateAPI();
             Apply = new RelayCommand(async () => await _logicAPI.CreateBall(NrOfBalls));
             Start = new RelayCommand(async () => await _logicAPI.BallsMovement());
         }
-
-
 
         private int _numberOfBalls;
         public int NrOfBalls

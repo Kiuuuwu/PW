@@ -7,8 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\wspolbiezne\Logic.csproj" />
-  </ItemGroup>
-
 </Project>

@@ -1,25 +1,20 @@
 ﻿using Data;
 using System.Collections.ObjectModel;
 using System.Drawing;
+using Model;
 
 namespace Logic
 {
-    public class BallManager : LogicAPI //TODO: JAK TUTAJ UZYWAC DATAAPI??
+    public class BallManager : LogicAPI
     {
         private ObservableCollection<DataAPI> _currentBalls = new ObservableCollection<DataAPI>();
+        private ObservableCollection<BallModel> _currentBallsModel = new ObservableCollection<BallModel>();
         private Canvas _canvas = new Canvas(new Point(0, 0), new Point(640, 360));
 
-        public ObservableCollection<DataAPI> CurrentBalls
-        {
-            get
-            {
-                return _currentBalls;
-            }
-        }
-        public override ObservableCollection<DataAPI> getCollection()
-        {
-            return CurrentBalls;
-        }
+        public ObservableCollection<DataAPI> CurrentBalls => _currentBalls;
+
+        public override ObservableCollection<BallModel> getCollection() => _currentBallsModel;
+
         public override async Task CreateBall(int NrOfBalls)
         {
             _currentBalls.Clear();
@@ -29,14 +24,24 @@ namespace Logic
                 PointF vector = new PointF(0, 0);
                 int diameter = random.Next(40) + 20;
                 DataAPI ball = new Ball(
-                    random.Next(_canvas.LeftUpCorner.X, _canvas.RightDownCorner.X - diameter), 
-                    random.Next(_canvas.LeftUpCorner.Y, _canvas.RightDownCorner.Y - diameter), 
+                    random.Next(_canvas.LeftUpCorner.X, _canvas.RightDownCorner.X - diameter),
+                    random.Next(_canvas.LeftUpCorner.Y, _canvas.RightDownCorner.Y - diameter),
                     random.Next(20, 30), diameter,
-                    0, 
-                    0, 
-                    random.NextDouble() + 0.1, 
+                    0,
+                    0,
+                    random.NextDouble() + 0.1,
                     vector);
                 _currentBalls.Add(ball);
+                _currentBallsModel.Add(new BallModel(ball.XCoordinate, ball.YCoordinate, ball.Diameter));
+            }
+        }
+
+        private void UpdateBallsModel()
+        {
+            for (int i = 0; i < CurrentBalls.Count; i++)
+            {
+                var ball = CurrentBalls[i];
+                _currentBallsModel[i].Update(ball.XCoordinate, ball.YCoordinate, ball.Diameter);
             }
         }
 
@@ -56,7 +61,7 @@ namespace Logic
             ball1.UpdateMovement(ball2.DestinationPlaneX, ball2.DestinationPlaneY, ball2.Vector, temp);
             ball2.UpdateMovement(tmpX, tmpY, tmp, temp2);
         }
-        public override /*async*/ void IsCollisionAndHandleCollision(ObservableCollection<DataAPI> CurrentBalls) // czy pilka zderza sie z inna pilka
+        public override void IsCollisionAndHandleCollision(ObservableCollection<DataAPI> CurrentBalls) // czy pilka zderza sie z inna pilka
         {
             double distanceX;
             double distanceY;
@@ -73,6 +78,8 @@ namespace Logic
 
             while (true) // wykrywamy zderzenia przez caly czas dzialania programu
             {
+                UpdateBallsModel();
+
                 for (int i = 0; i < CurrentBalls.Count; i++)
                 {
                     for (int j = i + 1; j < CurrentBalls.Count; j++)
@@ -203,6 +210,7 @@ namespace Logic
                         }
 
                         MoveBall(ball);
+
                         hitWall = false;
                     }
                 });
