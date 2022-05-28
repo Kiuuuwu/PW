@@ -19,18 +19,21 @@ namespace Logic
         {
             _currentBalls.Clear();
             Random random = new Random();
+            Logger logger = new Logger();
             for (int i = 0; i < NrOfBalls; i++)
             {
                 PointF vector = new PointF(0, 0);
                 int diameter = random.Next(40, 60);
                 DataAPI ball = new Ball(
+                    i + 1,
                     random.Next(_canvas.LeftUpCorner.X, _canvas.RightDownCorner.X - diameter),
                     random.Next(_canvas.LeftUpCorner.Y, _canvas.RightDownCorner.Y - diameter),
                     random.Next(20, 30), diameter,
                     0,
                     0,
                     random.NextDouble() + 0.1,
-                    vector);
+                    vector,
+                    logger);
                 _currentBalls.Add(ball);
                 _currentBallsModel.Add(new BallModel(ball.XCoordinate, ball.YCoordinate, ball.Diameter));
             }

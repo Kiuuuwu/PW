@@ -4,3 +4,4 @@
 .claudiaideconfig
 .upgrade-assistant
 upgrade-assistant.clef
+*.json

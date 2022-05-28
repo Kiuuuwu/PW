@@ -1,11 +1,14 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.CompilerServices;
+using System.Text.Json;
 
 namespace Data
 {
     public class Ball : DataAPI, INotifyPropertyChanged
     {
+        private Logger _logger;
         private Canvas _canvas = new Canvas(new Point(0, 0), new Point(640, 360));
         public override event PropertyChangedEventHandler? PropertyChanged;
         protected override void RaisePropertyChanged([CallerMemberName] string propertyName = null)
@@ -40,7 +43,7 @@ namespace Data
                 RaisePropertyChanged("YCoordinate");
             }
         }
-        //public int Id { get; init; }
+        public int Id { get; init; }
         public override double NrOfFrames { get; set; }
         public override int Diameter { get; set; }
         public override int Radius => Diameter / 2;
@@ -75,9 +78,9 @@ namespace Data
         public override double Mass { get; set; }
         public override PointF Vector { get; set; }
 
-        public Ball(/*int id, */double XCoordinate, double YCoordinate, double NrOfFrames, int Diameter, double DestinationPlaneX, double DestinationPlaneY, double Mass, PointF Vector)
+        public Ball(int id, double XCoordinate, double YCoordinate, double NrOfFrames, int Diameter, double DestinationPlaneX, double DestinationPlaneY, double Mass, PointF Vector, Logger logger)
         {
-            //this.Id = id;
+            this.Id = id;
             this.Diameter = Diameter;
             this.XCoordinate = XCoordinate;
             this.YCoordinate = YCoordinate;
@@ -86,6 +89,7 @@ namespace Data
             this.DestinationPlaneY = DestinationPlaneY;
             this.Mass = Mass;
             this.Vector = Vector;
+            _logger = logger;
         }
 
         public override void Move()
@@ -113,6 +117,8 @@ namespace Data
                 YCoordinate = _canvas.LeftUpCorner.Y;
             else
                 YCoordinate += Vector.Y;
+
+            _logger.SaveLogsToFile(this);
         }
         public override void UpdateMovement(double x, double y, PointF vector, double nrOfFrames)
         {
@@ -126,6 +132,7 @@ namespace Data
                 NrOfFrames = nrOfFrames;
             }
             _canMove = true;
+            _logger.SaveLogsToFile(this);
         }
     }
 }
