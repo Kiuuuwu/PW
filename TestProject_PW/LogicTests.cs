@@ -13,10 +13,11 @@ namespace TestProject_PW
         [TestMethod]
         public void MoveBall_ValidAmmount_IsBallMoved()
         {
+            Logger logger = new Logger();
             LogicAPI ballManager = LogicAPI.CreateAPI();
             ballManager.CreateBall(1);
 
-            DataAPI ball = new Ball(1, 10, 200, 25, 15, 100, 0, 20, new PointF(2, 5));
+            DataAPI ball = new Ball(1, 10, 200, 25, 15, 100, 0, 20, new PointF(2, 5), logger);
 
             ballManager.FindNewBallPosition(ball);
             double tmp_x = ball.XCoordinate;

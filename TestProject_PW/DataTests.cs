@@ -15,7 +15,8 @@ namespace TestProject_PW
         [TestMethod]
         public void UpdateMovement_Valid_ArePropertiesChanged()
         {
-            DataAPI ball = new Ball(1, 10, 200, 25, 15, 100, 0, 20, new PointF(0, 0));
+            Logger logger = new Logger();
+            DataAPI ball = new Ball(1, 10, 200, 25, 15, 100, 0, 20, new PointF(0, 0), logger);
 
             double oldX = ball.DestinationPlaneX;
             double oldY = ball.DestinationPlaneY;
@@ -34,7 +35,8 @@ namespace TestProject_PW
         [TestMethod]
         public void Move_Valid_ArePropertiesChanged()
         {
-            DataAPI ball = new Ball(1, 10, 200, 25, 15, 100, 0, 20, new PointF(5, 10));
+            Logger logger = new Logger();
+            DataAPI ball = new Ball(1, 10, 200, 25, 15, 100, 0, 20, new PointF(5, 10), logger);
 
             double oldX = ball.XCoordinate;
             double oldY = ball.YCoordinate;
