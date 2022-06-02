@@ -17,6 +17,8 @@ namespace Logic
 
         public override async Task CreateBall(int NrOfBalls)
         {
+            if (File.Exists(@"..\..\..\..\logs.json"))
+                File.Delete(@"..\..\..\..\logs.json");
             _currentBalls.Clear();
             Random random = new Random();
             Logger logger = new Logger();
